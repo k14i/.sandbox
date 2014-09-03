@@ -1,15 +1,39 @@
 #include <stdio.h>
 #include <string.h>
 
+typedef int (*Member_int_0)(void*);
+typedef void (*Member_void_1_List)(void*, void*);
+
 typedef struct
 {
   void *data;
   void *next;
+  Member_int_0 terminate;
+  Member_void_1_List append;
 } List;
 
 #define newList() { \
-    NULL, NULL \
+    NULL, NULL, \
+      (void*)&List_terminate(List *self), \
+      (void*)&List_append(List *self, List *list) \
       }
+
+static int List_terminate(List *self) {
+  List list = newList();
+  if(self->next) return -1;
+  self->next = &list;
+  return 0;
+}
+
+static void List_append(List *self, List *list) {
+  List *ptr;
+  
+  ptr = &self;
+  while (ptr) {
+    if(!ptr->next) break;
+    ptr = ptr->next;
+  }
+}
 
 int main(int argc, char *argv[]) {
   char foo[256];
@@ -42,6 +66,7 @@ int main(int argc, char *argv[]) {
     printf("%s\n", ptr->data);
     ptr = ptr->next;
   }
-
+  
   return 0;
 }
+
