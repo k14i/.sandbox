@@ -1,22 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef int (*Member_int_0)(void*);
-typedef void (*Member_void_1_List)(void*, void*);
-
-typedef struct
-{
-  void *data;
-  void *next;
-  Member_int_0 terminate;
-  Member_void_1_List append;
-} List;
-
-#define newList() { \
-    NULL, NULL, \
-      (void*)&List_terminate(List *self), \
-      (void*)&List_append(List *self, List *list) \
-      }
+#include "list.h"
 
 static int List_terminate(List *self) {
   List list = newList();
@@ -28,7 +13,7 @@ static int List_terminate(List *self) {
 static void List_append(List *self, List *list) {
   List *ptr;
   
-  ptr = &self;
+  ptr = self;
   while (ptr) {
     if(!ptr->next) break;
     ptr = ptr->next;
