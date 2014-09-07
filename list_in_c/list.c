@@ -53,45 +53,32 @@ static void List_parse(List *self) {
   return;
 }
 
+static void List_destroy(List *self) {
+  destroyList(self);
+  return;
+}
+
 int main(int argc, char *argv[]) {
+  int exit_status = 0;
   void *buf;
   char strbuf[256];
 
-  //void *list = malloc(sizeof(List));
-  //memset(list, 0, sizeof(list));
-  //(List *)list = newList();
-  List list = newList();
-
   // 1
-  char *strbuf1 = malloc(sizeof(strbuf));
-  memset(strbuf1, 0, sizeof(&strbuf1));
-  sprintf(strbuf1, "foo");
-  
-  List *list1 = malloc(sizeof(list));
-  //memset(list1, 0, sizeof(list1));
-  memcpy(list1, &list, sizeof(list));
+  List list1 = newList();
+  sprintf(strbuf, "foo");
+  memcpy(list1.data, strbuf, sizeof(strbuf));
 
-  //list1->data = &strbuf;
-  //sprintf(list1->data, strbuf);
-  memcpy(&(list1->data), &strbuf1, sizeof(strbuf1));
-  printf("list1(%p)->data(%p) = %s\n", list1, list1->data, list1->data);
-  //
+  printf("list1(%p)->data(%p) = %s\n", &list1, &(list1.data), list1.data);
 
-/*
   // 2
-  memset(strbuf, 0, sizeof(strbuf));
+  List list2 = newList();
   sprintf(strbuf, "bar");
-  List *list2 = malloc(sizeof(list));
-  memcpy(list2, &list, sizeof(list));
+  memcpy(list2.data, strbuf, sizeof(strbuf));
 
-  //list2->data = &strbuf;
-  sprintf(list2->data, strbuf);
-  printf("list1(%p)->data(%p) = %s\n", list1, list1->data, list1->data);
-  printf("list2(%p)->data(%p) = %s\n", list2, list2->data, list2->data);
-  //
+  printf("list1(%p).data(%p) = %s\n", &list1, &(list1.data), list1.data);
+  printf("list2(%p).data(%p) = %s\n", &list2, &(list2.data), list2.data);
 
-  list1->append(list1, list2);
-*/
+  //list1->append(list1, list2);
 
 /*
   if(list1->terminate(&list1) != 0) goto err;
@@ -100,11 +87,16 @@ int main(int argc, char *argv[]) {
   list1->parse(list1);
 */
 
-  free(list1);
-  return 0;
+  exit_status = EXIT_SUCCESS;
+  goto clean_up_and_exit;
 
 err:
-  free(list1);
-  return -1;
+  exit_status = EXIT_FAILURE;
+  goto clean_up_and_exit;
+
+clean_up_and_exit:
+  list1.destroy(&list1);
+  list2.destroy(&list2);
+  return exit_status;
 }
 
