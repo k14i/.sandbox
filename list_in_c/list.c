@@ -12,25 +12,24 @@ static void List_append(List *self, List *target) {
   printf("target(%p)->next is %p\n", target, target->next);
 
   ptr = self;
-  for (int i=0;;i++) {
-	printf("i = %d\n", i);
-	printf("ptr(%p)->next(%p)\n", ptr, ptr->next);
-	while(ptr->next) {
-	  printf("... ptr(%p)->next(%p) is not NULL. Go ahead.\n", ptr, ptr->next);
-	  printf("ptr->data is %s\n", ptr->data);
-	  ptr = ptr->next;
-	  printf("ptr->data is %s\n", ptr->data);
-	}
-	printf("... ptr(%p)->next(%p) is NULL. Append target(%p) to ptr->next(%p)\n", ptr, ptr->next, target, ptr->next);
-	printf("target(%p)->data(%p) is %s\n", target, target->data, target->data);
 
-	ptr->next = malloc(sizeof(void*));
-	memcpy(ptr->next, target, sizeof(void*));
-	//ptr->next = target;
-
-    printf("Now, ptr->next has become %p\n", ptr->next);
-	break;
+  for(int i=0; ptr->next; i++) {
+    printf("i = %d\n", i);
+    printf("ptr(%p)->next(%p)\n", ptr, ptr->next);
+    printf("... ptr(%p)->next(%p) is not NULL. Go ahead.\n", ptr, ptr->next);
+    printf("ptr->data is %s\n", ptr->data);
+    ptr = ptr->next;
+    printf("ptr->data is %s\n", ptr->data);
   }
+  printf("... ptr(%p)->next(%p) is NULL. Append target(%p) to ptr->next(%p)\n", ptr, ptr->next, target, ptr->next);
+  printf("target(%p)->data(%p) is %s\n", target, target->data, target->data);
+
+  ptr->next = malloc(sizeof(void*));
+  memcpy(ptr->next, target, sizeof(void*));
+  //ptr->next = target;
+
+  printf("Now, ptr->next has become %p\n", ptr->next);
+
   ptr = ptr->next;
   printf("ptr->next(%p)->data(%p) is %s\n", ptr, ptr->data, ptr->data);
   printf("ptr->next(%p)->next is %p\n", ptr, ptr->next);
