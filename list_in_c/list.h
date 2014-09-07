@@ -23,7 +23,7 @@ typedef struct
       (void*)&List_destroy,                     \
 }
 
-#define initList(self) {                        \
+#define initializeList(self) {                  \
     self->data = malloc(sizeof(void*));         \
     memset(self->data, 0, sizeof(self->data));  \
 }

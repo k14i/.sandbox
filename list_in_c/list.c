@@ -67,7 +67,7 @@ static void List_parse(List *self) {
 }
 
 static void List_initialize(List *self) {
-  initList(self);
+  initializeList(self);
   return;
 }
 
