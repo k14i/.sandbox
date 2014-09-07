@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
 
   // 1
   char *strbuf1 = malloc(sizeof(strbuf));
-  memset(strbuf1, 0, sizeof(strbuf1));
+  memset(strbuf1, 0, sizeof(&strbuf1));
   sprintf(strbuf1, "foo");
   
   List *list1 = malloc(sizeof(list));
@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
 
   //list1->data = &strbuf;
   //sprintf(list1->data, strbuf);
-  memcpy(list1->data, strbuf1, sizeof(strbuf1));
+  memcpy(&(list1->data), &strbuf1, sizeof(strbuf1));
   printf("list1(%p)->data(%p) = %s\n", list1, list1->data, list1->data);
   //
 
