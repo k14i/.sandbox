@@ -44,6 +44,7 @@ static int List_terminate(List *self) {
   printf("Terminate %p with null_list(%p)\n", self, &null_list);
   self->append(self, &null_list);
 
+  null_list.destroy(&null_list);
   printf("---- %s ---- */\n", __func__);
   return 0;
 }
