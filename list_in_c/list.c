@@ -9,6 +9,7 @@ static void List_append(List *self, List *target) {
   List *ptr;
 
   printf("target(%p)->data(%p) is %s\n", target, target->data, target->data);
+  printf("target(%p)->next is %p\n", target, target->next);
 
   ptr = self;
   for (int i=0;;i++) {
@@ -22,13 +23,17 @@ static void List_append(List *self, List *target) {
 	}
 	printf("... ptr(%p)->next(%p) is NULL. Append target(%p) to ptr->next(%p)\n", ptr, ptr->next, target, ptr->next);
 	printf("target(%p)->data(%p) is %s\n", target, target->data, target->data);
+
 	ptr->next = malloc(sizeof(void*));
 	memcpy(ptr->next, target, sizeof(void*));
+	//ptr->next = target;
+
     printf("Now, ptr->next has become %p\n", ptr->next);
-    ptr = ptr->next;
-    printf("ptr->next(%p)->data(%p) is %s\n", ptr, ptr->data, ptr->data);
 	break;
   }
+  ptr = ptr->next;
+  printf("ptr->next(%p)->data(%p) is %s\n", ptr, ptr->data, ptr->data);
+  printf("ptr->next(%p)->next is %p\n", ptr, ptr->next);
 
   printf("---- %s ---- */\n", __func__);
   return;
@@ -49,17 +54,16 @@ static void List_parse(List *self) {
   List *ptr;
 
   ptr = self;
-  for (int i=0;;i++) {
-	printf("i = %d\n", i);
-    printf("ptr(%p)->data(%p) = %s\n", ptr, ptr->data, ptr->data);
-    printf("ptr(%p)->next(%p) = %p\n", ptr, ptr->next, ptr->next);
-    if(!ptr->next) {
-	  printf("... ptr(%p)->next(%p) is NULL. break.\n", ptr, ptr->next);
-      break;
-	};
-	printf("... ptr(%p)->next(%p) is not NULL. continue.\n", ptr, ptr->next);
+
+  for(int i=0; ptr->next; i++) {
+    printf("i = %d\n", i);
+    printf("ptr(%p)->data(%p) is %s\n", ptr, ptr->data, ptr->data);
+    printf("ptr(%p)->next is %p\n", ptr, ptr->next);
+    printf("... ptr(%p)->next(%p) is not NULL. continue.\n", ptr, ptr->next);
     ptr = ptr->next;
+    continue;
   }
+  printf("... ptr(%p)->next(%p) is NULL. break.\n", ptr, ptr->next);
 
   printf("---- %s ---- */\n", __func__);
   return;
