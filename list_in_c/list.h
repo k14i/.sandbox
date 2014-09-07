@@ -14,8 +14,7 @@ typedef struct
 } List;
 
 #define newList() {                             \
-    NULL,                                       \
-      NULL,                                     \
+    NULL, NULL,                                 \
       (void*)&List_append,                      \
       (void*)&List_terminate,                   \
       (void*)&List_parse,                       \

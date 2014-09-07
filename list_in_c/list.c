@@ -4,13 +4,13 @@
 
 #include "list.h"
 
-static void List_append(List *ptr, List *target) {
+static void List_append(List *self, List *target) {
   printf("\n/* ---- %s ----\n", __func__);
-  //List *ptr;
+  List *ptr;
 
   printf("target(%p)->data(%p) is %s\n", target, target->data, target->data);
 
-  //ptr = self;
+  ptr = self;
   for (int i=0;;i++) {
 	printf("i = %d\n", i);
 	printf("ptr(%p)->next(%p)\n", ptr, ptr->next);
@@ -24,7 +24,6 @@ static void List_append(List *ptr, List *target) {
 	printf("target(%p)->data(%p) is %s\n", target, target->data, target->data);
 	ptr->next = malloc(sizeof(void*));
 	memcpy(ptr->next, target, sizeof(void*));
-    //ptr->next = target;
     printf("Now, ptr->next has become %p\n", ptr->next);
     ptr = ptr->next;
     printf("ptr->next(%p)->data(%p) is %s\n", ptr, ptr->data, ptr->data);
