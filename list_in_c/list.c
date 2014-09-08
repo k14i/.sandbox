@@ -49,17 +49,29 @@ static int List_terminate(List *self) {
   return 0;
 }
 
-static void List_parse(List *self) {
+static void List_print_data(List *self, List *list) {
+	printf("\n/* ---- %s ----\n", __func__);
+	printf("list(%p)->data(%p) is %s\n", list, list->data, list->data);
+	printf("---- %s ---- */\n", __func__);
+	return;
+}
+
+static void List_print_next(List *self, List *list) {
+	printf("\n/* ---- %s ----\n", __func__);
+    printf("list(%p)->next is %p\n", list, list->data);
+	printf("---- %s ---- */\n", __func__);
+	return;
+}
+
+static void List_foreach(List *self, void *function) {
   printf("\n/* ---- %s ----\n", __func__);
   List *ptr;
-
+  Func *fun = function;
   ptr = self;
 
   for(int i=0; ptr->next; i++) {
     printf("i = %d\n", i);
-    printf("ptr(%p)->data(%p) is %s\n", ptr, ptr->data, ptr->data);
-    printf("ptr(%p)->next is %p\n", ptr, ptr->next);
-    printf("... ptr(%p)->next(%p) is not NULL. continue.\n", ptr, ptr->next);
+	(*fun)(self, ptr);
     ptr = ptr->next;
     continue;
   }
@@ -113,7 +125,8 @@ int main(int argc, char *argv[]) {
   printf("list2(%p).data(%p) is %s\n", &list2, list2.data, list2.data);
   printf("list2(%p).next is %p\n", &list2, list2.next);
 
-  list1.parse(&list1);
+  list1.foreach(&list1, &(list1.print_data));
+  list1.foreach(&list1, &(list1.print_next));
 
   exit_status = EXIT_SUCCESS;
   goto clean_up_and_exit;
