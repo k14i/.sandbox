@@ -49,22 +49,16 @@ static int List_terminate(List *self) {
   return 0;
 }
 
-static void List_print_data(List *self, List *list) {
+static void List_dump(List *self, List *list) {
 	printf("\n/* ---- %s ----\n", __func__);
 	printf("list(%p)->data(%p) is %s\n", list, list->data, list->data);
-	printf("---- %s ---- */\n", __func__);
-	return;
-}
-
-static void List_print_next(List *self, List *list) {
-	printf("\n/* ---- %s ----\n", __func__);
-    printf("list(%p)->next is %p\n", list, list->data);
+	printf("list(%p)->next is %p\n", list, list->data);
 	printf("---- %s ---- */\n", __func__);
 	return;
 }
 
 static void List_foreach(List *self, void *function) {
-  printf("\n/* ---- %s ----\n", __func__);
+  printf("\n/* ======== %s ========\n", __func__);
   List *ptr;
   Func *fun = function;
   ptr = self;
@@ -77,7 +71,7 @@ static void List_foreach(List *self, void *function) {
   }
   printf("... ptr(%p)->next(%p) is NULL. break.\n", ptr, ptr->next);
 
-  printf("---- %s ---- */\n", __func__);
+  printf("======== %s ======== */\n", __func__);
   return;
 }
 
@@ -108,25 +102,14 @@ int main(int argc, char *argv[]) {
   sprintf(strbuf, "bar");
   memcpy(list2.data, strbuf, sizeof(strbuf));
 
-  printf("list1(%p).data(%p) is %s\n", &list1, list1.data, list1.data);
-  printf("list1(%p).next is %p\n", &list1, list1.next);
-  printf("list2(%p).data(%p) is %s\n", &list2, list2.data, list2.data);
-  printf("list2(%p).next is %p\n", &list2, list2.next);
+  list1.foreach(&list1, &(list1.dump));
 
   list1.append(&list1, &list2);
-  printf("list1(%p).data(%p) is %s\n", &list1, list1.data, list1.data);
-  printf("list1(%p).next is %p\n", &list1, list1.next);
-  printf("list2(%p).data(%p) is %s\n", &list2, list2.data, list2.data);
-  printf("list2(%p).next is %p\n", &list2, list2.next);
+  list1.foreach(&list1, &(list1.dump));
 
   if(list1.terminate(&list1) != 0) goto err;
-  printf("list1(%p).data(%p) is %s\n", &list1, list1.data, list1.data);
-  printf("list1(%p).next is %p\n", &list1, list1.next);
-  printf("list2(%p).data(%p) is %s\n", &list2, list2.data, list2.data);
-  printf("list2(%p).next is %p\n", &list2, list2.next);
 
-  list1.foreach(&list1, &(list1.print_data));
-  list1.foreach(&list1, &(list1.print_next));
+  list1.foreach(&list1, &(list1.dump));
 
   exit_status = EXIT_SUCCESS;
   goto clean_up_and_exit;

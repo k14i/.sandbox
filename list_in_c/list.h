@@ -11,8 +11,7 @@ typedef struct
   void *next;
   Member_void_1_List append;
   Member_int_0 terminate;
-  Member_void_1_List print_data;
-  Member_void_1_List print_next;
+  Member_void_1_List dump;
   Member_void_1_void foreach;
   Member_void_0 initialize;
   Member_void_0 destroy;
@@ -22,8 +21,7 @@ typedef struct
     NULL, NULL,                                 \
       (void*)&List_append,                      \
       (void*)&List_terminate,                   \
-      (void*)&List_print_data,                  \
-      (void*)&List_print_next,                  \
+      (void*)&List_dump,                        \
       (void*)&List_foreach,                     \
       (void*)&List_initialize,                  \
       (void*)&List_destroy,                     \
@@ -41,8 +39,7 @@ typedef struct
 
 static void List_append(List *self, List *list);
 static int List_terminate(List *self);
-static void List_print_data(List *self, List *list);
-static void List_print_next(List *self, List *list);
+static void List_dump(List *self, List *list);
 static void List_foreach(List *self, void *fun);
 static void List_initialize(List *self);
 static void List_destroy(List *self);
