@@ -38,6 +38,36 @@ static void List_append(List *self, List *target) {
   return;
 }
 
+static void List_add(List *self, List *target) {
+	List list = newList();
+	list.initialize(&list);
+	memcpy(list.data, &target, sizeof(target));
+	self->append(self, &list);
+	return;
+}
+
+static void List_set_tag(List *self, int tag) {
+	self->tag = tag;
+	return;
+}
+
+static void List_add_tag(List *self, int tag) {
+	List *ptr;
+	
+	ptr = self;
+	
+	while(ptr->next) ptr = ptr->next;
+	
+	self->set_tag(self, tag);
+	return;
+}
+
+static void List_add_with_tag(List *self, void *target, int tag) {
+	self->add(self, target);
+	self->add_tag(self, tag);
+	return;
+}
+
 static int List_terminate(List *self) {
   printf("\n/* ---- %s ----\n", __func__);
   List null_list = newList();
@@ -56,6 +86,18 @@ static void List_dump(List *self, List *list) {
 	printf("list(%p)->next is %p\n", list, list->next);
 	printf("---- %s ---- */\n", __func__);
 	return;
+}
+
+static List *List_find_by_tag(List *self, int tag) {
+	List *ptr;
+	ptr = self;
+	
+	while (ptr->next) {
+		if(ptr->tag == tag) break;
+		ptr = ptr->next;
+		continue;
+	}
+	return ptr;
 }
 
 static void List_foreach(List *self, void *function) {
