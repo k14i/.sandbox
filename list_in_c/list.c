@@ -52,7 +52,8 @@ static int List_terminate(List *self) {
 static void List_dump(List *self, List *list) {
 	printf("\n/* ---- %s ----\n", __func__);
 	printf("list(%p)->data(%p) is %s\n", list, list->data, list->data);
-	printf("list(%p)->next is %p\n", list, list->data);
+	printf("list(%p)->prev is %p\n", list, list->prev);
+	printf("list(%p)->next is %p\n", list, list->next);
 	printf("---- %s ---- */\n", __func__);
 	return;
 }

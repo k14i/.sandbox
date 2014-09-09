@@ -9,6 +9,7 @@ typedef struct
 {
   void *data;
   void *next;
+  void *prev;
   Member_void_1_List append;
   Member_int_0 terminate;
   Member_void_1_List dump;
@@ -18,7 +19,7 @@ typedef struct
 } List;
 
 #define newList() {                             \
-    NULL, NULL,                                 \
+    NULL, NULL, NULL,                           \
       (void*)&List_append,                      \
       (void*)&List_terminate,                   \
       (void*)&List_dump,                        \
