@@ -18,6 +18,8 @@ static void List_append(List *self, List *target) {
     printf("ptr(%p)->next(%p)\n", ptr, ptr->next);
     printf("... ptr(%p)->next(%p) is not NULL. Go ahead.\n", ptr, ptr->next);
     printf("ptr->data is %s\n", ptr->data);
+	if(!ptr->prev) ptr->prev = ptr;
+	printf("ptr->prev is %p\n", ptr->prev);
     ptr = ptr->next;
     printf("ptr->data is %s\n", ptr->data);
   }
@@ -110,10 +112,41 @@ static void List_foreach(List *self, void *function) {
     printf("i = %d\n", i);
 	(*fun)(self, ptr);
     ptr = ptr->next;
-    continue;
   }
   printf("... ptr(%p)->next(%p) is NULL. break.\n", ptr, ptr->next);
 
+  printf("======== %s ======== */\n", __func__);
+  return;
+}
+
+static void *List_last(List *self) {
+  printf("\n/* ======== %s ========\n", __func__);
+  List *ptr;
+  ptr = self;
+  while (ptr->next) {
+	ptr = ptr->next;
+  }
+
+  printf("ptr is %p\n", ptr);
+  printf("======== %s ======== */\n", __func__);
+  return ptr;
+}
+
+static void List_reverse(List *self, void *function) {
+  printf("\n/* ======== %s ========\n", __func__);
+  List *ptr;
+  Func *fun = function;
+
+  //memcpy(ptr, self->last(self), sizeof(ptr));
+//  printf("self->last(self) is %p\n", self->last(self));
+  //ptr = self->last(self);
+  //ptr = List_last(self);
+
+  for(int i=0; ptr->prev; i++) {
+	printf("i = %d\n", i);
+	(*fun)(self, ptr);
+	ptr = ptr->prev;
+  }
   printf("======== %s ======== */\n", __func__);
   return;
 }
@@ -153,6 +186,10 @@ int main(int argc, char *argv[]) {
   if(list1.terminate(&list1) != 0) goto err;
 
   list1.foreach(&list1, &(list1.dump));
+  //list1.reverse(&list1, &(list1.dump));
+  List *ptr;
+  list1.last(&list1);
+  //memcpy(ptr, list1.last(&list1), sizeof(List*));
 
   exit_status = EXIT_SUCCESS;
   goto clean_up_and_exit;

@@ -1,9 +1,14 @@
+//typedef struct {} List;
+
 typedef int (*Member_int_0)(void*);
 typedef void (*Member_void_1_List)(void*, void*);
 typedef void (*Member_void_0)(void*);
 typedef void (*Member_void_1_void)(void*, void*);
 typedef void (*Member_void_1_int)(void*, int);
 typedef void (*Member_void_2_void_int)(void*, void*, int);
+typedef void (*Member_List_1_int)(void*, int);
+typedef void (*Member_List_0)(void*);
+//typedef int (*Member_List_0)(void*);
 
 typedef void (*Func)(void*, void*);
 
@@ -20,8 +25,10 @@ typedef struct
   Member_void_2_void_int add_with_tag;
   Member_int_0           terminate;
   Member_void_1_List     dump;
-  Member_void_1_int      find_by_tag;
+  Member_List_1_int      find_by_tag;
   Member_void_1_void     foreach;
+  Member_List_0          last;
+  Member_void_1_void     reverse;
   Member_void_0          initialize;
   Member_void_0          destroy;
 } List;
@@ -37,6 +44,8 @@ typedef struct
       (void*)&List_dump,                        \
       (void*)&List_find_by_tag,                 \
       (void*)&List_foreach,                     \
+      (void*)&List_last,                        \
+      (void*)&List_reverse,                     \
       (void*)&List_initialize,                  \
       (void*)&List_destroy,                     \
 }
@@ -60,5 +69,8 @@ static int List_terminate(List *self);
 static void List_dump(List *self, List *list);
 static List *List_find_by_tag(List *self, int tag);
 static void List_foreach(List *self, void *fun);
+static void *List_last(List *self);
+//static List *List_last(List *self);
+static void List_reverse(List *self, void *fun);
 static void List_initialize(List *self);
 static void List_destroy(List *self);
