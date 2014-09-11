@@ -119,7 +119,7 @@ static void List_foreach(List *self, void *function) {
   return;
 }
 
-static void *List_last(List *self) {
+static List *List_last(List *self) {
   printf("\n/* ======== %s ========\n", __func__);
   List *ptr;
   ptr = self;
@@ -138,8 +138,9 @@ static void List_reverse(List *self, void *function) {
   Func *fun = function;
 
   //memcpy(ptr, self->last(self), sizeof(ptr));
-//  printf("self->last(self) is %p\n", self->last(self));
-  //ptr = self->last(self);
+  printf("List_last(self) is %p\n", List_last(self));
+  printf("self->last(self) is %p\n", self->last(self));
+  ptr = self->last(self);
   //ptr = List_last(self);
 
   for(int i=0; ptr->prev; i++) {
@@ -159,6 +160,10 @@ static void List_initialize(List *self) {
 static void List_destroy(List *self) {
   destroyList(self);
   return;
+}
+
+static void List_destroy_all(List *self) {
+	//List *ptr;
 }
 
 int main(int argc, char *argv[]) {
@@ -185,10 +190,10 @@ int main(int argc, char *argv[]) {
 
   if(list1.terminate(&list1) != 0) goto err;
 
-  list1.foreach(&list1, &(list1.dump));
-  //list1.reverse(&list1, &(list1.dump));
-  List *ptr;
-  list1.last(&list1);
+  //list1.foreach(&list1, &(list1.dump));
+  list1.reverse(&list1, &(list1.dump));
+  //List *ptr;
+  //list1.last(&list1);
   //memcpy(ptr, list1.last(&list1), sizeof(List*));
 
   exit_status = EXIT_SUCCESS;

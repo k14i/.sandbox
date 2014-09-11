@@ -1,5 +1,4 @@
 //typedef struct {} List;
-
 typedef int (*Member_int_0)(void*);
 typedef void (*Member_void_1_List)(void*, void*);
 typedef void (*Member_void_0)(void*);
@@ -69,8 +68,8 @@ static int List_terminate(List *self);
 static void List_dump(List *self, List *list);
 static List *List_find_by_tag(List *self, int tag);
 static void List_foreach(List *self, void *fun);
-static void *List_last(List *self);
-//static List *List_last(List *self);
+//static void *List_last(List *self);
+static List *List_last(List *self);
 static void List_reverse(List *self, void *fun);
 static void List_initialize(List *self);
 static void List_destroy(List *self);
