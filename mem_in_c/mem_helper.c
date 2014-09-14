@@ -6,16 +6,26 @@
  * Mem Class
  */
 
-static int Mem_initialize(Mem *self) {
+static Mem *Mem_initialize(Mem *self) {
+	self->ptr  = malloc(sizeof(self->ptr));
+	self->prev = malloc(sizeof(self->prev));
+	self->next = malloc(sizeof(self->next));
+	self->ref_count = 0;
+	self->status = MEM_STATUS_PRESERVED;
+	return self;
 }
 
 static int Mem_increment(Mem *self) {
+	return self->ref_count++;
 }
 
 static int Mem_decrement(Mem *self) {
+	return self->ref_count--;
 }
 
-static int Mem_set_status(Mem *self) {
+static void Mem_set_status(Mem *self, int mem_status) {
+	self->status = mem_status;
+	return;
 }
 
 static int Mem_dump(Mem *self) {
