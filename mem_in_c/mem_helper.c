@@ -15,6 +15,9 @@ static Mem *Mem_initialize(Mem *self) {
 	return self;
 }
 
+static int Mem_append(Mem *self, Mem *target) {
+}
+
 static int Mem_increment(Mem *self) {
 	return self->ref_count++;
 }
@@ -38,7 +41,7 @@ static int Mem_dump(Mem *self) {
 static int MemHelper_initialize(MemHelper *self) {
 }
 
-static int MemHelper_add(MemHelper *self, Mem *mem) {
+static int MemHelper_append(MemHelper *self, Mem *mem) {
 }
 
 static int MemHelper_destroy(MemHelper *self, Mem *mem) {
@@ -47,7 +50,7 @@ static int MemHelper_destroy(MemHelper *self, Mem *mem) {
 static int MemHelper_destroy_all(MemHelper *self) {
 }
 
-static int MemHelper_foreach(MemHelper *self) {
+static int MemHelper_foreach(MemHelper *self, void *function) {
 }
 
 static Mem *MemHelper_find_by_ptr(MemHelper *self, void *ptr) {
