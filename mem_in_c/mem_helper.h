@@ -7,55 +7,58 @@
 #define MEM_STATUS_FREED       3
 
 /*
- * Mem Class
+ * Mem Object
  */
 
 typedef struct
 {
-	void             *ptr;
-	void             *prev;
-    void             *next;
-    int              ref_count;
-    int              status;
-	Member_int_0     initialize;
-	Member_int_1_Mem append;
-	Member_int_0     increment;
-    Member_int_0     decrement;
-	Member_int_1_int set_status;
-	Member_int_0     dump;
+	void              *ptr;
+	void              *prev;
+    void              *next;
+    int               ref_count;
+    int               status;
+	Member_Mem_0      initialize;
+	Member_void_1_Mem append;
+	Member_int_0      increment;
+    Member_int_0      decrement;
+	Member_void_1_int set_status;
+	Member_void_0     dump;
 } Mem;
 
 #define newMem() {									\
 		NULL, NULL, NULL, 0, 0,						\
-			(void*)&MemHelper_set_status,			\
-			(void*)&MemHelper_append,				\
-			(void*)&MemHelper_increment,			\
-			(void*)&MemHelper_decrement,			\
+			(void*)&Mem_initialize,					\
+			(void*)&Mem_append,						\
+			(void*)&Mem_increment,					\
+			(void*)&Mem_decrement,					\
+			(void*)&Mem_set_status,					\
 }
 
 /*
- * MemHelper Class
+ * MemHelper Object
  */
 
 typedef struct
 {
-	void              *mem;
-	Member_int_0      initialize;
-	Member_int_1_Mem  append;
-	Member_int_1_Mem  destroy;
-	Member_int_0      destroy_all;
-	Member_int_1_void foreach;
-	Member_Mem_1_void find_by_ptr;
-	Member_Mem_1_int  find_by_ref_count;
-	Member_Mem_1_int  find_by_status;
-	Member_int_0      dump;
+	void               *mem;
+	Member_MemHelper_0 new;
+	Member_void_0      destroy;
+	Member_int_0       initialize;
+	Member_int_1_Mem   append;
+	Member_int_0       destroy_all;
+	Member_int_1_void  foreach;
+	Member_Mem_1_void  find_by_ptr;
+	Member_Mem_1_int   find_by_ref_count;
+	Member_Mem_1_int   find_by_status;
+	Member_int_0       dump;
 } MemHelper;
 
 #define newMemHelper() {							\
 		NULL,										\
+			(void*)&MemHelper_new,					\
+			(void*)&MemHelper_destroy,				\
 			(void*)&MemHelper_initialize,			\
 			(void*)&MemHelper_append,				\
-			(void*)&MemHelper_destroy,				\
 			(void*)&MemHelper_destroy_all,			\
 			(void*)&MemHelper_foreach,				\
 			(void*)&MemHelper_find_by_ptr,			\

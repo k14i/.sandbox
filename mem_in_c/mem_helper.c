@@ -1,9 +1,12 @@
-#include "common.h"
 #include "mem_helper.h"
+
+/*
+ * Prototypes for private methods
+ */
 
 
 /*
- * Mem Class
+ * Mem Object
  */
 
 static Mem *Mem_initialize(Mem *self) {
@@ -15,7 +18,10 @@ static Mem *Mem_initialize(Mem *self) {
 	return self;
 }
 
-static int Mem_append(Mem *self, Mem *target) {
+static void Mem_append(Mem *self, Mem *target) {
+	self->next   = target;
+	target->prev = self;
+	return;
 }
 
 static int Mem_increment(Mem *self) {
@@ -31,20 +37,31 @@ static void Mem_set_status(Mem *self, int mem_status) {
 	return;
 }
 
-static int Mem_dump(Mem *self) {
+static void Mem_dump(Mem *self) {
+	return;
 }
 
 /*
- * MemHelper Class
+ * MemHelper Object
  */
+
+static MemHelper *MemHelper_new(MemHelper *self) {
+	size_t size = sizeof(MemHelper);
+	MemHelper *mem_helper = malloc(size);
+	memset(mem_helper, 0, size);
+	mem_helper = newMemHelper();
+	return mem_helper;
+}
+
+static void MemHelper_destroy(MemHelper *self) {
+	free(self);
+	return;
+}
 
 static int MemHelper_initialize(MemHelper *self) {
 }
 
 static int MemHelper_append(MemHelper *self, Mem *mem) {
-}
-
-static int MemHelper_destroy(MemHelper *self, Mem *mem) {
 }
 
 static int MemHelper_destroy_all(MemHelper *self) {
