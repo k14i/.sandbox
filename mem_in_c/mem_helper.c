@@ -9,16 +9,16 @@
  * Mem Object
  */
 
-static Mem *Mem_initialize(Mem *self) {
+static void Mem_initialize(Mem *self) {
 	self->ptr  = malloc(sizeof(self->ptr));
 	self->prev = malloc(sizeof(self->prev));
 	self->next = malloc(sizeof(self->next));
 	self->ref_count = 0;
 	self->status = MEM_STATUS_PRESERVED;
-	return self;
+	return;
 }
 
-static void Mem_append(Mem *self, Mem *target) {
+static void Mem_append(Mem *self, void *target) {
 	self->next   = target;
 	target->prev = self;
 	return;
@@ -40,6 +40,7 @@ static void Mem_set_status(Mem *self, int mem_status) {
 static void Mem_dump(Mem *self) {
 	return;
 }
+
 
 /*
  * MemHelper Object

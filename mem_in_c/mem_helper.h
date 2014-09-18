@@ -43,17 +43,18 @@ typedef struct
  * MemHelper Object
  */
 
-typedef void (*Member_void_0)     (void*);
-typedef int  (*Member_int_0)      (void*);
-typedef Mem  (*Member_Mem_0)      (void*);
-typedef int  (*Member_int_1_Mem)  (void*, Mem *mem);
-typedef Mem  (*Member_Mem_1_void) (void*, void*);
-typedef Mem  (*Member_Mem_1_int)  (void*, int num);
+typedef void      (*Member_void_0)      (void*);
+typedef int       (*Member_int_0)       (void*);
+typedef Mem       (*Member_Mem_0)       (void*);
+typedef MemHelper (*Member_MemHelper_0) (void*);
+typedef int       (*Member_int_1_Mem)   (void*, Mem *mem);
+typedef Mem       (*Member_Mem_1_void)  (void*, void*);
+typedef Mem       (*Member_Mem_1_int)   (void*, int num);
 
 typedef struct
 {
 	void               *mem;
-	Member_Mem_0       new;
+	Member_MemHelper_0 new;
 	Member_void_0      destroy;
 	Member_int_0       initialize;
 	Member_int_1_Mem   append;
