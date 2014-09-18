@@ -10,19 +10,24 @@
  * Mem Object
  */
 
+typedef void (*Member_void_0)      (void*);
+typedef int  (*Member_int_0)       (void*);
+typedef void (*Member_void_1_void) (void*, void*);
+typedef void (*Member_void_1_int)  (void*, int num);
+
 typedef struct
 {
-	void              *ptr;
-	void              *prev;
-    void              *next;
-    int               ref_count;
-    int               status;
-	Member_Mem_0      initialize;
-	Member_void_1_Mem append;
-	Member_int_0      increment;
-    Member_int_0      decrement;
-	Member_void_1_int set_status;
-	Member_void_0     dump;
+	void               *ptr;
+	void               *prev;
+    void               *next;
+    int                ref_count;
+    int                status;
+	Member_void_0      initialize;
+	Member_void_1_void append;
+	Member_int_0       increment;
+    Member_int_0       decrement;
+	Member_void_1_int  set_status;
+	Member_void_0      dump;
 } Mem;
 
 #define newMem() {									\
@@ -38,10 +43,17 @@ typedef struct
  * MemHelper Object
  */
 
+typedef void (*Member_void_0)     (void*);
+typedef int  (*Member_int_0)      (void*);
+typedef Mem  (*Member_Mem_0)      (void*);
+typedef int  (*Member_int_1_Mem)  (void*, Mem *mem);
+typedef Mem  (*Member_Mem_1_void) (void*, void*);
+typedef Mem  (*Member_Mem_1_int)  (void*, int num);
+
 typedef struct
 {
 	void               *mem;
-	Member_MemHelper_0 new;
+	Member_Mem_0       new;
 	Member_void_0      destroy;
 	Member_int_0       initialize;
 	Member_int_1_Mem   append;
