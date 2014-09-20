@@ -71,13 +71,34 @@ static int MemHelper_destroy_all(MemHelper *self) {
 static int MemHelper_foreach(MemHelper *self, void *function) {
 }
 
-static Mem *MemHelper_find_by_ptr(MemHelper *self, void *ptr) {
+static int *MemHelper_find_by_ptr(MemHelper *self, Mem *mem, void *target) {
+	int ret = 0;
+	Mem *ptr = mem->ptr;
+	while(ptr == target) {
+		if(ptr == target) {
+			i = 1;
+			break;
+		}
+		ptr = ptr->next;
+	}
+	return ret;
 }
 
-static Mem *MemHelper_find_by_ref_count(MemHelper *self, int count) {
+static char *MemHelper_find_by_ref_count(MemHelper *self, Mem *mem, int target) {
+	int i = 0;
+	char list[8192];
+	Mem *ptr = mem->ptr;
+	while(ptr) {
+		if(ptr->ref_count == target) {
+			list[i] = ptr;
+			i++;
+		}
+		ptr = ptr->next;
+	}
+	return &list;
 }
 
-static Mem *MemHelper_find_by_status(MemHelper *self, int status) {
+static Mem *MemHelper_find_by_status(MemHelper *self, Mem *mem, int target) {
 }
 
 static int MemHelper_dump(MemHelper *self) {
