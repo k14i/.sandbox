@@ -5,6 +5,7 @@
  */
 
 
+
 /*
  * Mem Object
  */
@@ -86,7 +87,7 @@ static int *MemHelper_find_by_ptr(MemHelper *self, Mem *mem, void *target) {
 
 static char *MemHelper_find_by_ref_count(MemHelper *self, Mem *mem, int target) {
 	int i = 0;
-	char list[8192];
+	char list[DEFAULT_ARRAY_SIZE];
 	Mem *ptr = mem->ptr;
 	while(ptr) {
 		if(ptr->ref_count == target) {
@@ -98,7 +99,18 @@ static char *MemHelper_find_by_ref_count(MemHelper *self, Mem *mem, int target) 
 	return &list;
 }
 
-static Mem *MemHelper_find_by_status(MemHelper *self, Mem *mem, int target) {
+static char *MemHelper_find_by_status(MemHelper *self, Mem *mem, int target) {
+	int i = 0;
+	char list[DEFAULT_ARRAY_SIZE];
+	Mem *ptr = mem->ptr;
+	while(ptr) {
+		if(ptr->status == target) {
+			list[i] = ptr;
+			i++;
+		}
+		ptr = ptr->next;
+	}
+	return &list;
 }
 
 static int MemHelper_dump(MemHelper *self) {

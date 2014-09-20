@@ -6,6 +6,8 @@
 #define MEM_STATUS_TO_BE_FREED 2
 #define MEM_STATUS_FREED       3
 
+#define DEFAULT_ARRAY_SIZE 8192
+
 /*
  * Mem Object
  */
