@@ -7,6 +7,9 @@ EXTRA_DIST = autogen.sh
 TARGET = ./bin/$(shell basename `readlink -f .`)
 OBJDIR = ./tmp/.obj
 
+# glibtoolize: Consider adding `-I m4' to ACLOCAL_AMFLAGS in Makefile.am
+ACLOCAL_AMFILES = -I m4
+
 #all: clean $(TARGET)
 #clean: distclean
 #	find . -name Makefile.in -exec \rm -f {} \;
