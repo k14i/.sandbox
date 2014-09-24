@@ -47,12 +47,15 @@ static void Mem_dump(Mem *self) {
  * MemHelper Object
  */
 
-static MemHelper *MemHelper_new(MemHelper *self) {
-	size_t size = sizeof(MemHelper);
+static char *MemHelper_new(MemHelper *self) {
+	char ret[2];
+	ssize_t size = sizeof(MemHelper);
 	MemHelper *mem_helper = malloc(size);
 	memset(mem_helper, 0, size);
 	mem_helper = newMemHelper();
-	return mem_helper;
+	ret[0] = 0;
+	ret[1] = &mem_helper;
+	return &ret;
 }
 
 static void MemHelper_destroy(MemHelper *self) {
@@ -72,7 +75,8 @@ static int MemHelper_destroy_all(MemHelper *self) {
 static int MemHelper_foreach(MemHelper *self, void *function) {
 }
 
-static int *MemHelper_find_by_ptr(MemHelper *self, Mem *mem, void *target) {
+static int MemHelper_find_by_ptr(MemHelper *self, Mem *mem, void *target) {
+	int i = 0;
 	int ret = 0;
 	Mem *ptr = mem->ptr;
 	while(ptr == target) {
