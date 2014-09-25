@@ -49,7 +49,7 @@ typedef struct
 //typedef int       (*Member_int_0)          (void*);
 typedef Mem       (*Member_Mem_0)          (void*);
 typedef char      (*Member_char_0)         (void*);
-typedef int       (*Member_int_1_void)     (void*, void*)
+typedef int       (*Member_int_1_void)     (void*, void*);
 typedef int       (*Member_int_1_Mem)      (void*, Mem *mem);
 typedef Mem       (*Member_Mem_1_void)     (void*, void*);
 typedef Mem       (*Member_Mem_1_int)      (void*, int num);
@@ -59,7 +59,7 @@ typedef char      (*Member_char_2_Mem_int) (void*, Mem *mem, int num);
 typedef struct
 {
 	void                   *mem;
-	Member_char_0          *new;
+	Member_void_0          *new;
 	Member_void_0          destroy;
 	Member_int_0           initialize;
 	Member_int_1_Mem       append;

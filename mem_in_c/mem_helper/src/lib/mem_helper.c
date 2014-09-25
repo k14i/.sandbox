@@ -1,3 +1,5 @@
+#include <stdlib.h> //NOTE: free
+#include <string.h> //NOTE: memcpy
 #include "mem_helper.h"
 
 /*
@@ -21,7 +23,7 @@ static void Mem_initialize(Mem *self) {
 
 static void Mem_append(Mem *self, void *target) {
 	self->next   = target;
-	target->prev = self;
+	//target->prev = self;
 	return;
 }
 
@@ -47,15 +49,23 @@ static void Mem_dump(Mem *self) {
  * MemHelper Object
  */
 
-static char *MemHelper_new(MemHelper *self) {
-	char ret[2];
-	ssize_t size = sizeof(MemHelper);
-	MemHelper *mem_helper = malloc(size);
-	memset(mem_helper, 0, size);
-	mem_helper = newMemHelper();
-	ret[0] = 0;
-	ret[1] = &mem_helper;
-	return &ret;
+static void MemHelper_new(MemHelper *self) {
+	/*
+	char buf[2];
+	//size_t size = sizeof(MemHelper);
+	MemHelper mem_helper = newMemHelper();
+	//MemHelper *mem_helper = malloc(size);
+	//memset(mem_helper, 0, size);
+	//mem_helper = newMemHelper();
+	//MemHelper _mem_helper = newMemHelper();
+	//memcpy(mem_helper, _mem_helper, sizeof(_mem_helper));
+	buf[0] = 0;
+	//buf[1] = (char)mem_helper;
+	memcpy(buf[1], &mem_helper, sizeof(mem_helper));
+	char *ret = malloc(sizeof(buf));
+	memcpy(ret, buf, sizeof(buf));
+	*/
+	return;
 }
 
 static void MemHelper_destroy(MemHelper *self) {
@@ -95,12 +105,15 @@ static char *MemHelper_find_by_ref_count(MemHelper *self, Mem *mem, int target) 
 	Mem *ptr = mem->ptr;
 	while(ptr) {
 		if(ptr->ref_count == target) {
-			list[i] = ptr;
+			list[i] = (char)ptr;
 			i++;
 		}
 		ptr = ptr->next;
 	}
-	return &list;
+
+	char *list_ret = malloc(DEFAULT_ARRAY_SIZE); //TODO: free()
+	memcpy(list_ret, list, sizeof(list));
+	return list_ret;
 }
 
 static char *MemHelper_find_by_status(MemHelper *self, Mem *mem, int target) {
@@ -109,12 +122,15 @@ static char *MemHelper_find_by_status(MemHelper *self, Mem *mem, int target) {
 	Mem *ptr = mem->ptr;
 	while(ptr) {
 		if(ptr->status == target) {
-			list[i] = ptr;
+			list[i] = (char)ptr;
 			i++;
 		}
 		ptr = ptr->next;
 	}
-	return &list;
+
+	char *list_ret = malloc(DEFAULT_ARRAY_SIZE); //TODO: free()
+	memcpy(list_ret, list, sizeof(list));
+	return list_ret;
 }
 
 static int MemHelper_dump(MemHelper *self) {
