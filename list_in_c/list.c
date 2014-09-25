@@ -139,9 +139,9 @@ static void List_reverse(List *self, void *function) {
 
   //memcpy(ptr, self->last(self), sizeof(ptr));
   printf("List_last(self) is %p\n", List_last(self));
-  printf("self->last(self) is %p\n", self->last(self));
-  ptr = self->last(self);
-  //ptr = List_last(self);
+  //printf("self->last(self) is %p\n", self->last(self));
+  //ptr = self->last(self);
+  ptr = List_last(self);
 
   for(int i=0; ptr->prev; i++) {
 	printf("i = %d\n", i);
