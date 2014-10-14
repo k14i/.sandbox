@@ -96,4 +96,13 @@ static List *ListHelper_last(ListHelper *self);
 #endif
 
 
+/*
+ * Function Type Definition
+ */
+
+#ifdef FUNC_TYPE
+#define FUNC_TYPE
+
 typedef void (*Func)(void*, void*);
+
+#endif
