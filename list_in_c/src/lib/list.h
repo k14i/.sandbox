@@ -85,13 +85,13 @@ typedef struct
 	Member_List_0      last;
 } ListHelper;
 
-#define newListHelper() {						\
-		(void*)&List_find_by_tag,				\
-			(void*)&List_last,					\
+#define newListHelper() {							\
+		(void*)&ListHelper_find_by_tag,				\
+			(void*)&ListHelper_last,				\
 }
 
-static List *List_find_by_tag(List *self, int tag);
-static List *List_last(List *self);
+static List *ListHelper_find_by_tag(ListHelper *self, int tag);
+static List *ListHelper_last(ListHelper *self);
 
 #endif
 

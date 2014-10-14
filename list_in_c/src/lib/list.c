@@ -4,6 +4,11 @@
 
 #include "list.h"
 
+
+/*
+ * List Object
+ */
+
 static void List_append(List *self, List *target) {
   printf("\n/* ---- %s ----\n", __func__);
   List *ptr;
@@ -90,18 +95,6 @@ static void List_dump(List *self, List *list) {
 	return;
 }
 
-static List *List_find_by_tag(List *self, int tag) {
-	List *ptr;
-	ptr = self;
-	
-	while (ptr->next) {
-		if(ptr->tag == tag) break;
-		ptr = ptr->next;
-		continue;
-	}
-	return ptr;
-}
-
 static void List_foreach(List *self, void *function) {
   printf("\n/* ======== %s ========\n", __func__);
   List *ptr;
@@ -117,19 +110,6 @@ static void List_foreach(List *self, void *function) {
 
   printf("======== %s ======== */\n", __func__);
   return;
-}
-
-static List *List_last(List *self) {
-  printf("\n/* ======== %s ========\n", __func__);
-  List *ptr;
-  ptr = self;
-  while (ptr->next) {
-	ptr = ptr->next;
-  }
-
-  printf("ptr is %p\n", ptr);
-  printf("======== %s ======== */\n", __func__);
-  return ptr;
 }
 
 static void List_reverse(List *self, void *function) {
@@ -164,5 +144,35 @@ static void List_destroy(List *self) {
 
 static void List_destroy_all(List *self) {
 	//List *ptr;
+}
+
+
+/*
+ * ListHelper Object
+ */
+
+static List *ListHelper_last(ListHelper *self) {
+  printf("\n/* ======== %s ========\n", __func__);
+  List *ptr;
+  ptr = self;
+  while (ptr->next) {
+	ptr = ptr->next;
+  }
+
+  printf("ptr is %p\n", ptr);
+  printf("======== %s ======== */\n", __func__);
+  return ptr;
+}
+
+static List *ListHelper_find_by_tag(ListHelper *self, int tag) {
+	List *ptr;
+	ptr = self;
+	
+	while (ptr->next) {
+		if(ptr->tag == tag) break;
+		ptr = ptr->next;
+		continue;
+	}
+	return ptr;
 }
 
