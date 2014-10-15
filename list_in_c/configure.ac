@@ -6,6 +6,9 @@ AC_INIT([list_in_c], [0.1.0], [keithseahus at gmail dot com])
 AC_CONFIG_SRCDIR([src/example.c])
 AC_CONFIG_HEADERS([config.h])
 
+AM_INIT_AUTOMAKE
+LT_INIT
+
 # Checks for programs.
 #AC_PROG_CC
 AC_PROG_CC_C99
@@ -20,5 +23,9 @@ AC_CHECK_HEADERS([stdlib.h string.h])
 # Checks for library functions.
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([memset])
+
+AC_CONFIG_FILES([Makefile
+  src/Makefile
+  src/lib/Makefile])
 
 AC_OUTPUT

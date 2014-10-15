@@ -7,7 +7,7 @@
  * List Object
  */
 
-typedef int (*Member_int_0)(void*);
+typedef int  (*Member_int_0)(void*);
 typedef void (*Member_void_1_List)(void*, void*);
 typedef void (*Member_void_0)(void*);
 typedef void (*Member_void_1_void)(void*, void*);
@@ -63,7 +63,7 @@ static void List_add(List *self, List *list);
 static void List_set_tag(List *self, int tag);
 static void List_add_tag(List *self, int tag);
 static void List_add_with_tag(List *self, void *target, int tag);
-static int List_terminate(List *self);
+static int  List_terminate(List *self);
 static void List_dump(List *self, List *list);
 static void List_foreach(List *self, void *fun);
 static void List_reverse(List *self, void *fun);
@@ -75,14 +75,14 @@ static void List_destroy(List *self);
  * ListHelper Object
  */
 
-typedef List *(*Member_List_1_int)(void*, int);
-typedef List *(*Member_List_0)(void*);
+typedef List *(*Member_List_2_List_int)(void*, List *list, int number);
+typedef List *(*Member_List_1_List)(void*, List *list);
 //typedef int (*Member_List_0)(void*);
 
 typedef struct
 {
-	Member_List_1_int  find_by_tag;
-	Member_List_0      last;
+	Member_List_2_List_int  find_by_tag;
+	Member_List_1_List      last;
 } ListHelper;
 
 #define newListHelper() {							\
@@ -90,8 +90,8 @@ typedef struct
 			(void*)&ListHelper_last,				\
 }
 
-static List *ListHelper_find_by_tag(ListHelper *self, int tag);
-static List *ListHelper_last(ListHelper *self);
+static List *ListHelper_find_by_tag(ListHelper *self, List *list, int tag);
+static List *ListHelper_last(ListHelper *self, List *list);
 
 #endif
 
@@ -100,7 +100,7 @@ static List *ListHelper_last(ListHelper *self);
  * Function Type Definition
  */
 
-#ifdef FUNC_TYPE
+#ifndef FUNC_TYPE
 #define FUNC_TYPE
 
 typedef void (*Func)(void*, void*);
