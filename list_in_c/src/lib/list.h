@@ -59,7 +59,7 @@ typedef struct
 }
 
 static void List_append(List *self, List *list);
-static void List_add(List *self, List *list);
+static void List_add(List *self, List *target);
 static void List_set_tag(List *self, int tag);
 static void List_add_tag(List *self, int tag);
 static void List_add_with_tag(List *self, void *target, int tag);
