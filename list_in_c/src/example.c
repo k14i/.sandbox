@@ -9,6 +9,9 @@ int main(int argc, char *argv[]) {
   void *buf;
   char strbuf[256];
 
+  ListHelper list_helper = newListHelper();
+
+  /*
   // 1
   List list1 = newList();
   list1.initialize(&list1);
@@ -46,5 +49,6 @@ clean_up_and_exit:
   list2.destroy(&list2);
   printf("Exit with exit_status(%d)\n", exit_status);
   return exit_status;
+  */
 }
 
