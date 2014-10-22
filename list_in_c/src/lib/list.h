@@ -96,6 +96,12 @@ typedef struct
 //static List *ListHelper_find_by_tag(ListHelper *self, List *list, int tag);
 //static List *ListHelper_last(ListHelper *self, List *list);
 
+#define ListHelperElements {					\
+		(void*)&ListHelper_find_by_tag,			\
+			(void*)&ListHelper_last,			\
+			(void*)&ListHelper_destroy,			\
+}
+
 ListHelper *newListHelper();
 
 #endif

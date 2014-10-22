@@ -184,11 +184,7 @@ static void ListHelper_destroy(ListHelper *self) {
 
 ListHelper *newListHelper() {
 	void *buf = malloc(sizeof(ListHelper));
-	ListHelper list_helper = {
-		(void*)&ListHelper_find_by_tag,
-		(void*)&ListHelper_last,
-		(void*)&ListHelper_destroy,
-	};
+	ListHelper list_helper = ListHelperElements;
 	memcpy(buf, &list_helper, sizeof(list_helper));
 	return buf;
 }
