@@ -113,8 +113,9 @@ static void List_foreach(List *self, void *function) {
 }
 
 static void List_reverse(List *self, void *function) {
+	/*
   //printf("\n/* ======== %s ========\n", __func__);
-  ListHelper list_helper = newListHelper();
+  ListHelper *list_helper = newListHelper();
   List *ptr = self;
   Func *fun = function;
 
@@ -122,14 +123,14 @@ static void List_reverse(List *self, void *function) {
   //printf("ListHelper_last(&list_helper, ptr) is %p\n", ListHelper_last(&list_helper, ptr));
   //printf("self->last(self) is %p\n", self->last(self));
   //ptr = self->last(self);
-  ptr = ListHelper_last(&list_helper, ptr);
+  ptr = ListHelper_last(list_helper, ptr);
 
   for(int i=0; ptr->prev; i++) {
 	//printf("i = %d\n", i);
 	(*fun)(self, ptr);
 	ptr = ptr->prev;
   }
-  //printf("======== %s ======== */\n", __func__);
+  //printf("======== %s ======== \n", __func__);*/
   return;
 }
 
@@ -175,5 +176,20 @@ static List *ListHelper_find_by_tag(ListHelper *self, List *list, int tag) {
 		continue;
 	}
 	return ptr;
+}
+
+static void ListHelper_destroy(ListHelper *self) {
+	free(self);
+}
+
+ListHelper *newListHelper() {
+	void *buf = malloc(sizeof(ListHelper));
+	ListHelper list_helper = {
+		(void*)&ListHelper_find_by_tag,
+		(void*)&ListHelper_last,
+		(void*)&ListHelper_destroy,
+	};
+	memcpy(buf, &list_helper, sizeof(list_helper));
+	return buf;
 }
 
