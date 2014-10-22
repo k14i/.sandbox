@@ -9,7 +9,8 @@ int main(int argc, char *argv[]) {
   void *buf;
   char strbuf[256];
 
-  ListHelper list_helper = newListHelper();
+  ListHelper *list_helper = newListHelper();
+  list_helper->destroy;
 
   /*
   // 1
