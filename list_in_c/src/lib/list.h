@@ -33,7 +33,7 @@ typedef struct
 	Member_void_0          destroy;
 } List;
 
-#define newList() {                             \
+#define ListElements {							\
 		NULL, NULL, NULL, 0,					\
 		(void*)&List_append,					\
 			(void*)&List_add,					\
@@ -48,6 +48,7 @@ typedef struct
 			(void*)&List_destroy,				\
 }
 
+/*
 #define initializeList(self) {                  \
     self->data = malloc(sizeof(void*));         \
     memset(self->data, 0, sizeof(self->data));  \
@@ -57,6 +58,7 @@ typedef struct
     if(self->data) free(self->data);            \
     if(self->next) free(self->next);            \
 }
+*/
 
 static void List_append(List *self, List *list);
 static void List_add(List *self, List *target);
@@ -69,6 +71,7 @@ static void List_foreach(List *self, void *fun);
 static void List_reverse(List *self, void *fun);
 static void List_initialize(List *self);
 static void List_destroy(List *self);
+
 
 
 /*
@@ -95,6 +98,13 @@ typedef struct
 
 //static List *ListHelper_find_by_tag(ListHelper *self, List *list, int tag);
 //static List *ListHelper_last(ListHelper *self, List *list);
+
+#define ListHelperElements {					\
+		(void*)&ListHelper_new_list,			\
+			(void*)&ListHelper_find_by_tag,		\
+			(void*)&ListHelper_last,			\
+			(void*)&ListHelper_destroy,			\
+}
 
 ListHelper *newListHelper();
 

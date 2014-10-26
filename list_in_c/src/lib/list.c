@@ -46,7 +46,7 @@ static void List_append(List *self, List *target) {
 }
 
 static void List_add(List *self, List *target) {
-	List list = newList();
+	List list = ListElements;
 	list.initialize(&list);
 	memcpy(list.data, &target, sizeof(target));
 	self->append(self, &list);
@@ -77,7 +77,7 @@ static void List_add_with_tag(List *self, void *target, int tag) {
 
 static int List_terminate(List *self) {
   //printf("\n/* ---- %s ----\n", __func__);
-  List null_list = newList();
+  List null_list = ListElements;
   //printf("Terminate %p with null_list(%p)\n", self, &null_list);
   self->append(self, &null_list);
 
@@ -114,7 +114,6 @@ static void List_foreach(List *self, void *function) {
 
 static void List_reverse(List *self, void *function) {
 	/*
-  //printf("\n/* ======== %s ========\n", __func__);
   ListHelper *list_helper = newListHelper();
   List *ptr = self;
   Func *fun = function;
@@ -135,13 +134,15 @@ static void List_reverse(List *self, void *function) {
 }
 
 static void List_initialize(List *self) {
-  initializeList(self);
-  return;
+	self->data = malloc(sizeof(void*));
+	memset(self->data, 0, sizeof(self->data));
+	return;
 }
 
 static void List_destroy(List *self) {
-  destroyList(self);
-  return;
+	if(self->data) free(self->data);
+	if(self->next) free(self->next);
+	return;
 }
 
 static void List_destroy_all(List *self) {
@@ -152,6 +153,13 @@ static void List_destroy_all(List *self) {
 /*
  * ListHelper Object
  */
+
+static List *ListHelper_new_list(ListHelper *self) {
+	void *buf = malloc(sizeof(List));
+	List list = ListElements;
+	memcpy(buf, &list, sizeof(list));
+	return buf;
+}
 
 static List *ListHelper_last(ListHelper *self, List *list) {
   //printf("\n/* ======== %s ========\n", __func__);
@@ -184,11 +192,7 @@ static void ListHelper_destroy(ListHelper *self) {
 
 ListHelper *newListHelper() {
 	void *buf = malloc(sizeof(ListHelper));
-	ListHelper list_helper = {
-		(void*)&ListHelper_find_by_tag,
-		(void*)&ListHelper_last,
-		(void*)&ListHelper_destroy,
-	};
+	ListHelper list_helper = ListHelperElements;
 	memcpy(buf, &list_helper, sizeof(list_helper));
 	return buf;
 }
