@@ -78,12 +78,14 @@ static void List_destroy(List *self);
  * ListHelper Object
  */
 
+typedef List *(*Member_List_0)(void*);
 typedef List *(*Member_List_2_List_int)(void*, List *list, int number);
 typedef List *(*Member_List_1_List)(void*, List *list);
 //typedef int (*Member_List_0)(void*);
 
 typedef struct
 {
+	Member_List_0           new_list;
 	Member_List_2_List_int  find_by_tag;
 	Member_List_1_List      last;
 	Member_void_0           destroy;
