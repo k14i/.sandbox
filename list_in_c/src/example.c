@@ -10,7 +10,8 @@ int main(int argc, char *argv[]) {
   char strbuf[256];
 
   ListHelper *list_helper = newListHelper();
-  list_helper->destroy;
+  // NOTE: 'warning: expression result unused [-Wunused-value]' without cast.
+  (void)list_helper->destroy;
 
   /*
   // 1
