@@ -88,7 +88,7 @@ static int List_terminate(List *self) {
 
 static void List_dump(List *self, List *list) {
 	//printf("\n/* ---- %s ----\n", __func__);
-	printf("list(%p)->data(%p) is %s\n", list, list->data, list->data);
+	printf("list(%p)->data(%p) is %s\n", list, list->data, (char *)list->data);
 	printf("list(%p)->prev is %p\n", list, list->prev);
 	printf("list(%p)->next is %p\n", list, list->next);
 	//printf("---- %s ---- */\n", __func__);
@@ -135,7 +135,7 @@ static void List_reverse(List *self, void *function) {
 
 static void List_initialize(List *self) {
 	self->data = malloc(sizeof(void*));
-	memset(self->data, 0, sizeof(self->data));
+	memset(self->data, 0, sizeof(void*));
 	return;
 }
 
