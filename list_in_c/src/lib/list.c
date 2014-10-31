@@ -9,6 +9,20 @@
  * List Object
  */
 
+static void List_append(List *self, List *target);
+static void List_add(List *self, List *target);
+static void List_set_tag(List *self, int tag);
+static void List_add_tag(List *self, int tag);
+static void List_add_with_tag(List *self, void *target, int tag);
+static int  List_terminate(List *self);
+static void List_dump(List *self, List *list);
+static void List_foreach(List *self, void *function);
+static void List_reverse(List *self, void *function);
+static void List_initialize(List *self);
+static void List_destroy(List *self);
+static void List_destroy_all(List *self);
+
+
 static void List_append(List *self, List *target) {
   //printf("\n/* ---- %s ----\n", __func__);
   List *ptr;
