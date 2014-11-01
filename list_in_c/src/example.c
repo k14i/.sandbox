@@ -5,9 +5,9 @@
 #include "lib/list.h"
 
 int main(int argc, char *argv[]) {
-  int exit_status = 0;
-  void *buf;
-  char strbuf[256];
+  //int exit_status = 0;
+  //void *buf;
+  //char strbuf[256];
 
   ListHelper *list_helper = newListHelper();
   // NOTE: 'warning: expression result unused [-Wunused-value]' without cast.
