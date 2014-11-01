@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function _exec() {
   i=`expr $i + 1`
   echo "$i: Starting $1 $2"
