@@ -17,6 +17,10 @@ if test x$deps != x''; then
   _exec "sudo yum install -y" "$deps"
 fi
 
+_exec "touch" "./NEWS"
+_exec "touch" "./README"
+_exec "touch" "./AUTHORS"
+_exec "touch" "./ChangeLog"
 _exec "aclocal" ""
 _exec "autoreconf" "-i"
 _exec "automake" "-a"
