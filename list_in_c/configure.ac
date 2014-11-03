@@ -9,6 +9,11 @@ AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE
 LT_INIT
 
+# NOTE:
+#   libtoolize: Consider adding `AC_CONFIG_MACRO_DIR([m4])' to configure.ac and
+#   libtoolize: rerunning libtoolize, to keep the correct libtool macros in-tree.
+AC_CONFIG_MACRO_DIR([m4])
+
 # Checks for programs.
 AC_PROG_CXX
 AC_PROG_AWK
@@ -17,7 +22,7 @@ AC_PROG_CPP
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
-AC_PROG_RANLIB
+#AC_PROG_RANLIB
 
 # Checks for libraries.
 # FIXME: Replace `main' with a function in `-llist':

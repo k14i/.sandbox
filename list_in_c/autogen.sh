@@ -22,11 +22,12 @@ _exec "touch" "./README"
 _exec "touch" "./AUTHORS"
 _exec "touch" "./ChangeLog"
 _exec "aclocal" ""
+_exec "libtoolize" "-i"
 _exec "autoreconf" "-i"
 _exec "automake" "-a"
 _exec "autoconf" ""
 _exec "automake" "--add-missing"
-_exec "autoreconf" "-v"
+_exec "autoreconf" "-vi"
 
 echo
 echo "autogen.sh Successfully finished."
