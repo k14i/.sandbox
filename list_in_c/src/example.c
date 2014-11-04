@@ -10,11 +10,13 @@ int main(int argc, char *argv[]) {
   //char strbuf[256];
 
   printf("---- BEGIN main() ----\n");
-  ListHelper *list_helper = newListHelper();
-  printf("list_helper is %p\n", list_helper);
-  // NOTE: 'warning: expression result unused [-Wunused-value]' without cast.
-  (void)list_helper->destroy;
-  printf("list_helper is %p\n", list_helper);
+  for (int i=0; i<1; i++) {
+    ListHelper *list_helper = newListHelper();
+    printf("%d: list_helper is %p\n", i, list_helper);
+    // NOTE: 'warning: expression result unused [-Wunused-value]' without cast.
+    (void)list_helper->destroy(list_helper);
+    printf("%d: list_helper is %p\n", i, list_helper);
+  }
   printf("---- END main() ----\n");
 
   /*
