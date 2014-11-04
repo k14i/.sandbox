@@ -1,3 +1,5 @@
+lib_LTLIBRARIES = liblist.la
+
 noinst_HEADERS = liblist.la
 liblist_la_CFLAGS = \
 					-I../	\
@@ -8,8 +10,6 @@ liblist_la_SOURCES = \
 					 list.c list.h
 
 
-#lib_LTLIBRARIES = liblist.la
-#
 #liblist_la_SOURCES = list.c
 ##liblist_la_LIBADD =
 #
