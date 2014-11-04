@@ -17,6 +17,20 @@ int main(int argc, char *argv[]) {
     (void)list_helper->destroy(list_helper);
     printf("%d: list_helper is %p\n", i, list_helper);
   }
+  for (int i=0; i<1; i++) {
+    ListHelper *list_helper1 = newListHelper();
+    ListHelper *list_helper2 = newListHelper();
+    ListHelper *list_helper3 = newListHelper();
+    printf("%d: list_helper1 is %p\n", i, list_helper1);
+    printf("%d: list_helper2 is %p\n", i, list_helper2);
+    printf("%d: list_helper3 is %p\n", i, list_helper3);
+    (void)list_helper1->destroy(list_helper1);
+    (void)list_helper2->destroy(list_helper2);
+    (void)list_helper3->destroy(list_helper3);
+    printf("%d: list_helper1 is %p\n", i, list_helper1);
+    printf("%d: list_helper2 is %p\n", i, list_helper2);
+    printf("%d: list_helper3 is %p\n", i, list_helper3);
+  }
   printf("---- END main() ----\n");
 
   /*
