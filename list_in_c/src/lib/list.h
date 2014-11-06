@@ -72,7 +72,7 @@ typedef struct
 			(void*)&ListHelper_destroy,			\
 }
 
-extern ListHelper *newListHelper();
+ListHelper *newListHelper();
 
 #endif
 
