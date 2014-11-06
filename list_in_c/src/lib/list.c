@@ -201,7 +201,6 @@ static List *ListHelper_find_by_tag(ListHelper *self, List *list, int tag) {
 }
 
 static void ListHelper_destroy(ListHelper *self) {
-	printf("self is %p\n", self);
 	free(self);
 }
 
