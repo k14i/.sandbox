@@ -5,13 +5,13 @@
 #include "lib/list.h"
 
 int main(int argc, char *argv[]) {
-  int exit_status = 0;
-  void *buf;
-  char strbuf[256];
-
-  ListHelper *list_helper = newListHelper();
-  // NOTE: 'warning: expression result unused [-Wunused-value]' without cast.
-  (void)list_helper->destroy;
+  printf("---- BEGIN main() ----\n");
+  for (int i=0; i<1; i++) {
+    ListHelper *list_helper = newListHelper();
+    // NOTE: 'warning: expression result unused [-Wunused-value]' without cast.
+    (void)list_helper->destroy(list_helper);
+  }
+  printf("---- END main() ----\n");
 
   /*
   // 1

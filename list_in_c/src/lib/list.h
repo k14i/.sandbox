@@ -1,16 +1,23 @@
 #ifndef LIST_H
 #define LIST_H
 
+
+/*
+ * Member method type definition with standard types in C
+ */
+
+typedef void (*Member_void_0)(void*);
+typedef int  (*Member_int_0)(void*);
+typedef void (*Member_void_1_void)(void*, void*);
+typedef void (*Member_void_1_int)(void*, int);
+typedef void (*Member_void_2_void_int)(void*, void*, int);
+
+
 /*
  * List Object
  */
 
-typedef int  (*Member_int_0)(void*);
 typedef void (*Member_void_1_List)(void*, void*);
-typedef void (*Member_void_0)(void*);
-typedef void (*Member_void_1_void)(void*, void*);
-typedef void (*Member_void_1_int)(void*, int);
-typedef void (*Member_void_2_void_int)(void*, void*, int);
 
 typedef struct
 {
