@@ -168,6 +168,11 @@ static void List_destroy_all(List *self) {
  * ListHelper Object
  */
 
+static void ListHelper_destroy_list(ListHelper *self, List *list) {
+	memset(list, 0, sizeof(List));
+	free(list);
+}
+
 static List *ListHelper_new_list(ListHelper *self) {
 	void *buf = malloc(sizeof(List));
 	List list = ListElements;

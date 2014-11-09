@@ -66,6 +66,7 @@ typedef List *(*Member_List_1_List)(void*, List *list);
 
 typedef struct
 {
+	Member_void_1_List      destroy_list;
 	Member_List_0           new_list;
 	Member_List_2_List_int  find_by_tag;
 	Member_List_1_List      last;
@@ -73,6 +74,7 @@ typedef struct
 } ListHelper;
 
 #define ListHelperElements {					\
+		(void*)&ListHelper_destroy_list,		\
 		(void*)&ListHelper_new_list,			\
 			(void*)&ListHelper_find_by_tag,		\
 			(void*)&ListHelper_last,			\

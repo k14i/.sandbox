@@ -8,6 +8,8 @@ int main(int argc, char *argv[]) {
   printf("---- BEGIN main() ----\n");
   for (int i=0; i<1; i++) {
     ListHelper *list_helper = newListHelper();
+    List *list = list_helper->new_list(list_helper);
+    list_helper->destroy_list(list_helper, list);
     // NOTE: 'warning: expression result unused [-Wunused-value]' without cast.
     (void)list_helper->destroy(list_helper);
   }
