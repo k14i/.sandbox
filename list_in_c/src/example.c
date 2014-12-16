@@ -4,9 +4,11 @@
 
 #include "lib/list.h"
 
+#define TIMES 1
+
 int main(int argc, char *argv[]) {
   printf("---- BEGIN main() ----\n");
-  for (int i=0; i<1; i++) {
+  for (int i=0; i<TIMES; i++) {
     ListHelper *list_helper = newListHelper();
     List *list = list_helper->new_list(list_helper);
     list_helper->destroy_list(list_helper, list);
