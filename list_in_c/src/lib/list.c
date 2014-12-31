@@ -16,7 +16,7 @@ static void List_add_tag(List *self, int tag);
 static void List_add_with_tag(List *self, void *target, int tag);
 static int  List_terminate(List *self);
 static void List_dump(List *self, List *list);
-static void List_foreach(List *self, void *function);
+static void List_foreach(List *self, void *function, void *arg);
 static void List_reverse(List *self, void *function);
 static void List_initialize(List *self);
 static void List_destroy(List *self);
@@ -109,16 +109,22 @@ static void List_dump(List *self, List *list) {
 	return;
 }
 
-static void List_foreach(List *self, void *function) {
+static void List_foreach(List *self, void *function, void *arg) {
   //printf("\n/* ======== %s ========\n", __func__);
   List *ptr;
-  Func *fun = function;
+  //Func *fun = function;
   ptr = self;
 
   for(int i=0; ptr->next; i++) {
     //printf("i = %d\n", i);
-	(*fun)(self, ptr);
-    ptr = ptr->next;
+	if(!arg) {
+		Func_0 *fun = function;
+		(*fun)(self, ptr);
+	} else {
+		Func_1 *fun = function;
+		(*fun)(self, ptr, arg);
+	}
+	ptr = ptr->next;
   }
   //printf("... ptr(%p)->next(%p) is NULL. break.\n", ptr, ptr->next);
 

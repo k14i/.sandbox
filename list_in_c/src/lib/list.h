@@ -93,6 +93,7 @@ ListHelper *newListHelper();
 #ifndef FUNC_TYPE
 #define FUNC_TYPE
 
-typedef void (*Func)(void*, void*);
+typedef void (*Func_0)(void*, void*);
+typedef void (*Func_1)(void*, void*, void*);
 
 #endif
