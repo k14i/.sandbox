@@ -45,8 +45,8 @@ static void List_append(List *self, List *target) {
   //printf("... ptr(%p)->next(%p) is NULL. Append target(%p) to ptr->next(%p)\n", ptr, ptr->next, target, ptr->next);
   //printf("target(%p)->data(%p) is %s\n", target, target->data, target->data);
 
-  ptr->next = malloc(sizeof(void*));
-  memcpy(ptr->next, target, sizeof(void*));
+  ptr->next = malloc(sizeof(List));
+  memcpy(ptr->next, target, sizeof(List));
   //ptr->next = target;
 
   //printf("Now, ptr->next has become %p\n", ptr->next);
