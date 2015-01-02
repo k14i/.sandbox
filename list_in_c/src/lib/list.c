@@ -37,7 +37,7 @@ static void List_append(List *self, List *target) {
     //printf("ptr(%p)->next(%p)\n", ptr, ptr->next);
     //printf("... ptr(%p)->next(%p) is not NULL. Go ahead.\n", ptr, ptr->next);
     //printf("ptr->data is %s\n", ptr->data);
-	if(!ptr->prev) ptr->prev = ptr;
+//	if(!ptr->prev) ptr->prev = ptr;
 	//printf("ptr->prev is %p\n", ptr->prev);
     ptr = ptr->next;
     //printf("ptr->data is %s\n", ptr->data);
@@ -52,6 +52,7 @@ static void List_append(List *self, List *target) {
   //printf("Now, ptr->next has become %p\n", ptr->next);
 
   ptr = ptr->next;
+  ptr->next = NULL;
   //printf("ptr->next(%p)->data(%p) is %s\n", ptr, ptr->data, ptr->data);
   //printf("ptr->next(%p)->next is %p\n", ptr, ptr->next);
 
