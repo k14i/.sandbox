@@ -24,40 +24,19 @@ static void List_destroy_all(List *self);
 
 
 static void List_append(List *self, List *target) {
-  //printf("\n/* ---- %s ----\n", __func__);
-  List *ptr;
+	List *ptr;
 
-  //printf("target(%p)->data(%p) is %s\n", target, target->data, target->data);
-  //printf("target(%p)->next is %p\n", target, target->next);
+	ptr = self;
 
-  ptr = self;
+	for(int i=0; ptr->next; i++) ptr = ptr->next;
 
-  for(int i=0; ptr->next; i++) {
-    //printf("i = %d\n", i);
-    //printf("ptr(%p)->next(%p)\n", ptr, ptr->next);
-    //printf("... ptr(%p)->next(%p) is not NULL. Go ahead.\n", ptr, ptr->next);
-    //printf("ptr->data is %s\n", ptr->data);
-//	if(!ptr->prev) ptr->prev = ptr;
-	//printf("ptr->prev is %p\n", ptr->prev);
-    ptr = ptr->next;
-    //printf("ptr->data is %s\n", ptr->data);
-  }
-  //printf("... ptr(%p)->next(%p) is NULL. Append target(%p) to ptr->next(%p)\n", ptr, ptr->next, target, ptr->next);
-  //printf("target(%p)->data(%p) is %s\n", target, target->data, target->data);
+	ptr->next = malloc(sizeof(List));
+	memcpy(ptr->next, target, sizeof(List));
 
-  ptr->next = malloc(sizeof(List));
-  memcpy(ptr->next, target, sizeof(List));
-  //ptr->next = target;
+	ptr = ptr->next;
+	ptr->next = NULL;
 
-  //printf("Now, ptr->next has become %p\n", ptr->next);
-
-  ptr = ptr->next;
-  ptr->next = NULL;
-  //printf("ptr->next(%p)->data(%p) is %s\n", ptr, ptr->data, ptr->data);
-  //printf("ptr->next(%p)->next is %p\n", ptr, ptr->next);
-
-  //printf("---- %s ---- */\n", __func__);
-  return;
+	return;
 }
 
 static void List_add(List *self, List *target) {
@@ -75,11 +54,11 @@ static void List_set_tag(List *self, int tag) {
 
 static void List_add_tag(List *self, int tag) {
 	List *ptr;
-	
+
 	ptr = self;
-	
+
 	while(ptr->next) ptr = ptr->next;
-	
+
 	self->set_tag(self, tag);
 	return;
 }
@@ -91,46 +70,36 @@ static void List_add_with_tag(List *self, void *target, int tag) {
 }
 
 static int List_terminate(List *self) {
-  //printf("\n/* ---- %s ----\n", __func__);
-  List null_list = ListElements;
-  //printf("Terminate %p with null_list(%p)\n", self, &null_list);
-  self->append(self, &null_list);
+	List null_list = ListElements;
+	self->append(self, &null_list);
 
-  null_list.destroy(&null_list);
-  //printf("---- %s ---- */\n", __func__);
-  return 0;
+	null_list.destroy(&null_list);
+	return 0;
 }
 
 static void List_dump(List *self, List *list) {
-	//printf("\n/* ---- %s ----\n", __func__);
 	printf("list(%p)->data(%p) is %s\n", list, list->data, (char *)list->data);
 	printf("list(%p)->prev is %p\n", list, list->prev);
 	printf("list(%p)->next is %p\n", list, list->next);
-	//printf("---- %s ---- */\n", __func__);
 	return;
 }
 
 static void List_foreach(List *self, void *function, void *arg) {
-  //printf("\n/* ======== %s ========\n", __func__);
-  List *ptr;
-  //Func *fun = function;
-  ptr = self;
+	List *ptr;
+	ptr = self;
 
-  for(int i=0; ptr->next; i++) {
-    //printf("i = %d\n", i);
-	if(!arg) {
-		Func_0 *fun = function;
-		(*fun)(self, ptr);
-	} else {
-		Func_1 *fun = function;
-		(*fun)(self, ptr, arg);
+	for(int i=0; ptr->next; i++) {
+		if(!arg) {
+			Func_0 *fun = function;
+			(*fun)(self, ptr);
+		} else {
+			Func_1 *fun = function;
+			(*fun)(self, ptr, arg);
+		}
+		ptr = ptr->next;
 	}
-	ptr = ptr->next;
-  }
-  //printf("... ptr(%p)->next(%p) is NULL. break.\n", ptr, ptr->next);
 
-  //printf("======== %s ======== */\n", __func__);
-  return;
+	return;
 }
 
 static void List_reverse(List *self, void *function) {
@@ -188,22 +157,19 @@ static List *ListHelper_new_list(ListHelper *self) {
 }
 
 static List *ListHelper_last(ListHelper *self, List *list) {
-  //printf("\n/* ======== %s ========\n", __func__);
-  List *ptr;
-  ptr = list;
-  while (ptr->next) {
-	ptr = ptr->next;
-  }
+	List *ptr;
+	ptr = list;
+	while (ptr->next) {
+		ptr = ptr->next;
+	}
 
-  //printf("ptr is %p\n", ptr);
-  //printf("======== %s ======== */\n", __func__);
-  return ptr;
+	return ptr;
 }
 
 static List *ListHelper_find_by_tag(ListHelper *self, List *list, int tag) {
 	List *ptr;
 	ptr = list;
-	
+
 	while (ptr->next) {
 		if(ptr->tag == tag) break;
 		ptr = ptr->next;
