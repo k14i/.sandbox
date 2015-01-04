@@ -70,10 +70,12 @@ static void List_add_with_tag(List *self, void *target, int tag) {
 }
 
 static int List_terminate(List *self) {
-	List null_list = ListElements;
-	self->append(self, &null_list);
+	void *buf = malloc(sizeof(List));
+	List list = ListElements;
+	memcpy(buf, &list, sizeof(list));
+	self->append(self, &list);
 
-	null_list.destroy(&null_list);
+	list.destroy(&list);
 	return 0;
 }
 
