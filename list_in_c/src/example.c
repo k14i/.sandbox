@@ -6,8 +6,7 @@
 
 #define TIMES 1
 
-int main(int argc, char *argv[]) {
-  printf("---- BEGIN main() ----\n");
+int test_destroy_list() {
   for (int i=0; i<TIMES; i++) {
     ListHelper *list_helper = newListHelper();
     List *list = list_helper->new_list(list_helper);
@@ -15,6 +14,12 @@ int main(int argc, char *argv[]) {
     // NOTE: 'warning: expression result unused [-Wunused-value]' without cast.
     (void)list_helper->destroy(list_helper);
   }
+  return 0;
+}
+
+int main(int argc, char *argv[]) {
+  printf("---- BEGIN main() ----\n");
+  test_destroy_list();
   printf("---- END main() ----\n");
 
   /*
