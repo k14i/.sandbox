@@ -6,20 +6,37 @@
 
 #define TIMES 1
 
+int test_last() {
+	int ret = 0;
+
+	ListHelper *list_helper = newListHelper();
+	List *list = list_helper->new_list(list_helper);
+	List *last = list_helper->last(list_helper, list);
+	if (list != last) {
+		printf("list != last\n");
+		ret = 1;
+	}
+	list_helper->destroy_list(list_helper, list);
+	(void)list_helper->destroy(list_helper);
+	return ret;
+}
+
 int test_destroy_list() {
-  for (int i=0; i<TIMES; i++) {
-    ListHelper *list_helper = newListHelper();
-    List *list = list_helper->new_list(list_helper);
-    list_helper->destroy_list(list_helper, list);
-    // NOTE: 'warning: expression result unused [-Wunused-value]' without cast.
-    (void)list_helper->destroy(list_helper);
-  }
-  return 0;
+	for (int i=0; i<TIMES; i++) {
+		ListHelper *list_helper = newListHelper();
+		List *list = list_helper->new_list(list_helper);
+		list_helper->destroy_list(list_helper, list);
+		// NOTE: 'warning: expression result unused [-Wunused-value]' without cast.
+		(void)list_helper->destroy(list_helper);
+	}
+	return 0;
 }
 
 int main(int argc, char *argv[]) {
+  int ret = 0;
   printf("---- BEGIN main() ----\n");
-  test_destroy_list();
+  ret = test_destroy_list();
+  ret = test_last();
   printf("---- END main() ----\n");
 
   /*
