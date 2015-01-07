@@ -146,6 +146,7 @@ static void List_destroy_all(List *self) {
  * ListHelper Object
  */
 
+// TODO: Delete all the list recursively.
 static void ListHelper_destroy_list(ListHelper *self, List *list) {
 	memset(list, 0, sizeof(List));
 	free(list);
