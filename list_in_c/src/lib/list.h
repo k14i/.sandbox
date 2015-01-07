@@ -36,7 +36,6 @@ typedef struct
 	Member_void_1_void     reverse;
 	Member_void_0          initialize;
 	Member_void_0          destroy;
-	Member_void_0          destroy_all;
 } List;
 
 #define ListElements {							\
@@ -52,7 +51,6 @@ typedef struct
 			(void*)&List_reverse,				\
 			(void*)&List_initialize,			\
 			(void*)&List_destroy,				\
-			(void*)&List_destroy_all,			\
 }
 
 
