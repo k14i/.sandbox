@@ -20,7 +20,6 @@ static void List_foreach(List *self, void *function, void *arg);
 static void List_reverse(List *self, void *function);
 static void List_initialize(List *self);
 static void List_destroy(List *self);
-static void List_destroy_all(List *self);
 
 
 static void List_append(List *self, List *target) {
@@ -135,10 +134,6 @@ static void List_destroy(List *self) {
 	if(self->data) free(self->data);
 	if(self->next) free(self->next);
 	return;
-}
-
-static void List_destroy_all(List *self) {
-	//List *ptr;
 }
 
 
