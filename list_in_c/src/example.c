@@ -6,6 +6,21 @@
 
 #define TIMES 1
 
+int test_append() {
+	ListHelper *list_helper = newListHelper();
+	List *list0 = list_helper->new_list(list_helper);
+	List *list1 = list_helper->new_list(list_helper);
+	list0->append(list0, list1);
+
+	List *last = list_helper->last(list_helper, list0);
+
+	if (list0 == list1) return 1;
+	if (last == list0) return 1;
+	if (last == list1) return 0;
+
+	return 1;
+}
+
 int test_last() {
 	int ret = 0;
 
@@ -36,7 +51,11 @@ int main(int argc, char *argv[]) {
   int ret = 0;
   printf("---- BEGIN main() ----\n");
   ret = test_destroy_list();
+  if (ret != 0) printf("ERROR in test_destroy_list()\n");
   ret = test_last();
+  if (ret != 0) printf("ERROR in test_last()\n");
+  ret = test_append();
+  if (ret != 0) printf("ERROR in test_append()\n");
   printf("---- END main() ----\n");
 
   /*
