@@ -14,11 +14,32 @@ int test_append() {
 
 	List *last = list_helper->last(list_helper, list0);
 
-	if (list0 == list1) return 1;
-	if (last == list0) return 1;
-	if (last == list1) return 0;
+	if (!list0) {
+		printf("ERROR: !list0\n");
+		return 1;
+	}
+	if (!list1) {
+		printf("ERROR: !list1\n");
+		return 1;
+	}
+	if (!last) {
+		printf("ERROR: !last\n");
+		return 1;
+	}
+	if (list0 == list1) {
+		printf("ERROR: list0 == list1\n");
+		return 1;
+	}
+	if (last == list0) {
+		printf("ERROR: last == list0\n");
+		return 1;
+	}
+	if (last != list1) {
+		printf("ERROR: last != list1\n");
+		return 1;
+	}
 
-	return 1;
+	return 0;
 }
 
 int test_last() {

@@ -105,23 +105,23 @@ static void List_foreach(List *self, void *function, void *arg) {
 
 static void List_reverse(List *self, void *function) {
 	/*
-  ListHelper *list_helper = newListHelper();
-  List *ptr = self;
-  Func *fun = function;
+	ListHelper *list_helper = newListHelper();
+	List *ptr = self;
+	Func *fun = function;
 
-  //memcpy(ptr, self->last(self), sizeof(ptr));
-  //printf("ListHelper_last(&list_helper, ptr) is %p\n", ListHelper_last(&list_helper, ptr));
-  //printf("self->last(self) is %p\n", self->last(self));
-  //ptr = self->last(self);
-  ptr = ListHelper_last(list_helper, ptr);
+	//memcpy(ptr, self->last(self), sizeof(ptr));
+	//printf("ListHelper_last(&list_helper, ptr) is %p\n", ListHelper_last(&list_helper, ptr));
+	//printf("self->last(self) is %p\n", self->last(self));
+	//ptr = self->last(self);
+	ptr = ListHelper_last(list_helper, ptr);
 
-  for(int i=0; ptr->prev; i++) {
+	for(int i=0; ptr->prev; i++) {
 	//printf("i = %d\n", i);
 	(*fun)(self, ptr);
 	ptr = ptr->prev;
-  }
-  //printf("======== %s ======== \n", __func__);*/
-  return;
+	}
+	//printf("======== %s ======== \n", __func__);*/
+	return;
 }
 
 static void List_initialize(List *self) {
