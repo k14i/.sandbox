@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "list.h"
 
@@ -29,12 +30,7 @@ static void List_append(List *self, List *target) {
 
 	for(int i=0; ptr->next; i++) ptr = ptr->next;
 
-	ptr->next = malloc(sizeof(List));
-	memcpy(ptr->next, target, sizeof(List));
-
-	ptr = ptr->next;
-	ptr->next = NULL;
-
+	ptr->next = target;
 	return;
 }
 

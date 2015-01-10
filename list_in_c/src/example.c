@@ -36,6 +36,8 @@ int test_append() {
 	}
 	if (last != list1) {
 		printf("ERROR: last != list1\n");
+		printf("  last  = %p\n", last);
+		printf("  list1 = %p\n", list1);
 		return 1;
 	}
 
