@@ -40,6 +40,10 @@ int test_append() {
 		printf("  list1 = %p\n", list1);
 		return 1;
 	}
+	if (last->prev != list0) {
+		printf("ERROR: last->prev != list0\n");
+		return 1;
+	}
 
 	return 0;
 }

@@ -31,6 +31,9 @@ static void List_append(List *self, List *target) {
 	for(int i=0; ptr->next; i++) ptr = ptr->next;
 
 	ptr->next = target;
+
+	ptr = ptr->next;
+	ptr->prev = self;
 	return;
 }
 
