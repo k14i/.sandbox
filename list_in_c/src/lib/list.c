@@ -132,6 +132,7 @@ static void List_initialize(List *self) {
 static void List_destroy(List *self) {
 	if(self->data) free(self->data);
 	if(self->next) free(self->next);
+	memset(self, 0, sizeof(List));
 	return;
 }
 
@@ -142,8 +143,13 @@ static void List_destroy(List *self) {
 
 // TODO: Delete all the list recursively.
 static void ListHelper_destroy_list(ListHelper *self, List *list) {
-	memset(list, 0, sizeof(List));
-	free(list);
+	List *ptr = self->last(self, list);
+	for (int i; ptr->prev; i++) {
+		ptr = ptr->prev;
+		ptr->destroy(ptr->next);
+	}
+	ptr->destroy(ptr);
+	return;
 }
 
 static List *ListHelper_new_list(ListHelper *self) {
