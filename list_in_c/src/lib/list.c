@@ -184,6 +184,7 @@ static List *ListHelper_find_by_tag(ListHelper *self, List *list, int tag) {
 static void ListHelper_destroy(ListHelper *self) {
 	memset(self, 0, sizeof(ListHelper));
 	free(self);
+	return;
 }
 
 ListHelper *newListHelper() {
