@@ -11,6 +11,7 @@ typedef int  (*Member_int_0)(void*);
 typedef void (*Member_void_1_void)(void*, void*);
 typedef void (*Member_void_1_int)(void*, int);
 typedef void (*Member_void_2_void_int)(void*, void*, int);
+typedef void (*Member_void_2_void_void)(void*, void*, void*);
 
 
 /*
@@ -21,21 +22,21 @@ typedef void (*Member_void_1_List)(void*, void*);
 
 typedef struct
 {
-	void                   *data;
-	void                   *next;
-	void                   *prev;
-	int                    tag;
-	Member_void_1_List     append;
-	Member_void_1_List     add;
-	Member_void_1_int      set_tag;
-	Member_void_1_int      add_tag;
-	Member_void_2_void_int add_with_tag;
-	Member_int_0           terminate;
-	Member_void_1_List     dump;
-	Member_void_1_void     foreach;
-	Member_void_1_void     reverse;
-	Member_void_0          initialize;
-	Member_void_0          destroy;
+	void                     *data;
+	void                     *next;
+	void                     *prev;
+	int                      tag;
+	Member_void_1_List       append;
+	Member_void_1_List       add;
+	Member_void_1_int        set_tag;
+	Member_void_1_int        add_tag;
+	Member_void_2_void_int   add_with_tag;
+	Member_int_0             terminate;
+	Member_void_1_List       dump;
+	Member_void_2_void_void  foreach;
+	Member_void_1_void       reverse;
+	Member_void_0            initialize;
+	Member_void_0            destroy;
 } List;
 
 #define ListElements {							\
