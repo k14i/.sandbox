@@ -63,6 +63,22 @@ int test_last() {
 	return ret;
 }
 
+int test_foreach() {
+	int ret = 0;
+	ListHelper *list_helper = newListHelper();
+	List *list0 = list_helper->new_list(list_helper);
+	List *list1 = list_helper->new_list(list_helper);
+	List *list2 = list_helper->new_list(list_helper);
+	list0->append(list0, list1);
+	list0->append(list0, list2);
+
+	list0->foreach(list0, &(list0->dump), NULL);
+
+	list_helper->destroy_list(list_helper, list0);
+	(void)list_helper->destroy(list_helper);
+	return ret;
+}
+
 int test_destroy_list() {
 	for (int i=0; i<TIMES; i++) {
 		ListHelper *list_helper = newListHelper();
@@ -87,6 +103,11 @@ int main(int argc, char *argv[]) {
 	ret = test_last();
 	if (ret != 0) {
 		printf("ERROR in test_last()\n");
+		goto err;
+	}
+	ret = test_foreach();
+	if (ret != 0) {
+		printf("ERROR in test_foreach()\n");
 		goto err;
 	}
 	ret = test_append();
