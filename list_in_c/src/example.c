@@ -90,6 +90,35 @@ int test_destroy_list() {
 	return 0;
 }
 
+int test_set_tag() {
+	int ret = 0;
+	ListHelper *list_helper = newListHelper();
+	List *list = list_helper->new_list(list_helper);
+
+	if (list->tag != 0) {
+		printf("list->tag != 0\n");
+		goto err;
+	}
+
+	list->set_tag(list, 255);
+
+	if (list->tag != 255) {
+		printf("list->tag != 255\n");
+		goto err;
+	}
+
+	goto clean_up_and_return;
+
+err:
+	ret = 1;
+	goto clean_up_and_return;
+
+clean_up_and_return:
+	list_helper->destroy_list(list_helper, list);
+	(void)list_helper->destroy(list_helper);
+	return ret;
+}
+
 int main(int argc, char *argv[]) {
 	int ret = 0;
 	int exit_status = 0;
@@ -113,6 +142,11 @@ int main(int argc, char *argv[]) {
 	ret = test_append();
 	if (ret != 0) {
 		printf("ERROR in test_append()\n");
+		goto err;
+	}
+	ret = test_set_tag();
+	if (ret != 0) {
+		printf("ERROR in test_set_tag()\n");
 		goto err;
 	}
 	printf("---- END main() ----\n");
