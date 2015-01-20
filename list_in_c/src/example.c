@@ -7,6 +7,8 @@
 #define TIMES 1
 
 int test_append() {
+	int ret = 0;
+
 	ListHelper *list_helper = newListHelper();
 	List *list0 = list_helper->new_list(list_helper);
 	List *list1 = list_helper->new_list(list_helper);
@@ -16,36 +18,46 @@ int test_append() {
 
 	if (!list0) {
 		printf("ERROR: !list0\n");
-		return 1;
+		goto err;
 	}
 	if (!list1) {
 		printf("ERROR: !list1\n");
-		return 1;
+		goto err;
 	}
 	if (!last) {
 		printf("ERROR: !last\n");
-		return 1;
+		goto err;
 	}
 	if (list0 == list1) {
 		printf("ERROR: list0 == list1\n");
-		return 1;
+		goto err;
 	}
 	if (last == list0) {
 		printf("ERROR: last == list0\n");
-		return 1;
+		goto err;
 	}
 	if (last != list1) {
 		printf("ERROR: last != list1\n");
 		printf("  last  = %p\n", last);
 		printf("  list1 = %p\n", list1);
-		return 1;
+		goto err;
 	}
 	if (last->prev != list0) {
 		printf("ERROR: last->prev != list0\n");
-		return 1;
+		goto err;
 	}
 
-	return 0;
+	goto clean_up_and_return;
+
+err:
+	ret = 1;
+	goto clean_up_and_return;
+
+clean_up_and_return:
+	list_helper->destroy_list(list_helper, list0);
+	//list_helper->destroy_list(list_helper, list1);
+	(void)list_helper->destroy(list_helper);
+	return ret;
 }
 
 int test_last() {
