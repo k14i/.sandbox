@@ -68,8 +68,16 @@ int test_last() {
 	List *last = list_helper->last(list_helper, list);
 	if (list != last) {
 		printf("list != last\n");
-		ret = 1;
+		goto err;
 	}
+
+	goto clean_up_and_return;
+
+err:
+	ret = 1;
+	goto clean_up_and_return;
+
+clean_up_and_return:
 	list_helper->destroy_list(list_helper, list);
 	(void)list_helper->destroy(list_helper);
 	return ret;
