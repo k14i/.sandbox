@@ -46,14 +46,19 @@ static void List_destroy(List *self);
 
 static void List_append(List *self, List *target) {
 	List *ptr;
+	List *ptr_prev;
 
 	ptr = self;
 
-	for(int i=0; ptr->next; i++) ptr = ptr->next;
+	while (ptr->next) {
+		ptr_prev = ptr;
+		ptr = ptr->next;
+	}
 
 	ptr->next = target;
 
 	ptr = ptr->next;
+	//ptr->prev = ptr_prev;
 	ptr->prev = self;
 	return;
 }
@@ -109,7 +114,7 @@ static void List_foreach(List *self, void *function, void *arg) {
 	List *ptr;
 	ptr = self;
 
-	for(int i=0; ptr->next; i++) {
+	while (ptr->next) {
 		if(!arg) {
 			Func_0 *fun = function;
 			(*fun)(self, ptr);
@@ -165,7 +170,7 @@ static void List_destroy(List *self) {
 // TODO: Delete all the list recursively.
 static void ListHelper_destroy_list(ListHelper *self, List *list) {
 	List *ptr = self->last(self, list);
-	for (int i; ptr->prev; i++) {
+	while (ptr->prev) {
 		ptr = ptr->prev;
 		ptr->destroy(ptr->next);
 	}
