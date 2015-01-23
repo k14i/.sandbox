@@ -50,6 +50,8 @@ static void List_append(List *self, List *target) {
 
 	ptr = self;
 
+	if (ptr->prev) goto err;
+
 	while (ptr->next) {
 		ptr_prev = ptr;
 		ptr = ptr->next;
@@ -60,6 +62,10 @@ static void List_append(List *self, List *target) {
 	ptr = ptr->next;
 	//ptr->prev = ptr_prev;
 	ptr->prev = self;
+	return;
+
+err:
+	printf("self->prev should be NULL.\n");
 	return;
 }
 
