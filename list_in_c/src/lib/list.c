@@ -70,10 +70,16 @@ err:
 }
 
 static void List_add(List *self, List *target) {
+	if (self->prev) goto err;
+
 	List list = ListElements;
 	list.initialize(&list);
 	memcpy(list.data, &target, sizeof(target));
 	self->append(self, &list);
+	return;
+
+err:
+	printf("self->prev should be NULL.\n");
 	return;
 }
 
