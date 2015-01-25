@@ -89,6 +89,8 @@ static void List_set_tag(List *self, int tag) {
 }
 
 static void List_add_tag(List *self, int tag) {
+	if (self->prev) goto err;
+
 	List *ptr;
 
 	ptr = self;
@@ -96,6 +98,10 @@ static void List_add_tag(List *self, int tag) {
 	while(ptr->next) ptr = ptr->next;
 
 	self->set_tag(self, tag);
+	return;
+
+err:
+	printf("self->prev should be NULL.\n");
 	return;
 }
 
