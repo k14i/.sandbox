@@ -193,12 +193,18 @@ static void List_destroy(List *self) {
 
 // TODO: Delete all the list recursively.
 static void ListHelper_destroy_list(ListHelper *self, List *list) {
+	if (!list) goto err;
+
 	List *ptr = self->last(self, list);
 	while (ptr->prev) {
 		ptr = ptr->prev;
 		ptr->destroy(ptr->next);
 	}
 	ptr->destroy(ptr);
+	return;
+
+err:
+	printf("list should not be NULL.\n");
 	return;
 }
 
