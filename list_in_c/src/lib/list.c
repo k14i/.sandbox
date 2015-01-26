@@ -129,6 +129,8 @@ static void List_dump(List *self, List *list) {
 }
 
 static void List_foreach(List *self, void *function, void *arg) {
+	if (self->prev) goto err;
+
 	List *ptr;
 	ptr = self;
 
@@ -143,6 +145,10 @@ static void List_foreach(List *self, void *function, void *arg) {
 		ptr = ptr->next;
 	}
 
+	return;
+
+err:
+	printf("self->prev should be NULL.\n");
 	return;
 }
 
