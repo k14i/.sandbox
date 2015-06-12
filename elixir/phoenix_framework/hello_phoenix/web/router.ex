@@ -1,25 +1,16 @@
 defmodule HelloPhoenix.Router do
   use HelloPhoenix.Web, :router
 
-  pipeline :browser do
-    plug :accepts, ["html"]
+  pipeline :api do
+    plug :accepts, ["json"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
+  scope "/api/v1.0", HelloPhoenix do
+    pipe_through :api
+    resources "/subscribers", SubscriberController
+    resources "/subs_groups", SubsGroupController
   end
-
-  scope "/", HelloPhoenix do
-    pipe_through :browser # Use the default browser stack
-
-    get "/", PageController, :index
-  end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", HelloPhoenix do
-  #   pipe_through :api
-  # end
 end
