@@ -7,8 +7,26 @@ defmodule ApiDemo.Api.V1.SubscriberController do
 
   def index(conn, _params) do
     subscribers = Repo.all(Subscriber)
-    #subscribers = "[]"
     render conn, subscribers: subscribers
   end
+
+  # def edit(conn, _params) do
+  # end
+
+  # def new(conn, _params) do
+  # end
+
+  # def show(conn, _params) do
+  #   render conn, subscribers: _params
+  # end
+
+  # def create(conn, _params) do
+  # end
+
+  # def update(conn, _params) do
+  # end
+
+  # def delete(conn, _params) do
+  # end
 
 end

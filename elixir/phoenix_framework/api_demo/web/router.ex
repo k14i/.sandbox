@@ -12,8 +12,9 @@ defmodule ApiDemo.Router do
     pipe_through :api
     scope "/api", Api do
       scope "/v1.0", V1, as: :v1 do
-        resources "/subscribers", SubscriberController
-        resources "/subs_groups", SubsGroupController
+        #resources "/subscribers", SubscriberController
+        get "/subscribers", SubscriberController, :index
+        #resources "/subs_groups", SubsGroupController
       end
     end
   end
