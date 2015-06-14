@@ -16,9 +16,10 @@ defmodule ApiDemo.Api.V1.SubscriberController do
   # def new(conn, _params) do
   # end
 
-  # def show(conn, _params) do
-  #   render conn, subscribers: _params
-  # end
+  def show(conn, params) do
+    subscriber = Repo.get_by(Subscriber, phone_number: params["phone_number"])
+    render conn, subscribers: subscriber
+  end
 
   # def create(conn, _params) do
   # end

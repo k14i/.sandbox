@@ -5,4 +5,8 @@ defmodule ApiDemo.Api.V1.SubscriberView do
     subscribers
   end
 
+  def render("show.json", %{subscribers: subscribers}) do
+    subscribers
+  end
+
 end

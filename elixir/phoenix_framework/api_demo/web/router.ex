@@ -13,7 +13,8 @@ defmodule ApiDemo.Router do
     scope "/api", Api do
       scope "/v1.0", V1, as: :v1 do
         #resources "/subscribers", SubscriberController
-        get "/subscribers", SubscriberController, :index
+        get "/subscribers", SubscriberController, :index, as: :list_subscribers
+        get "/subscribers/:phone_number", SubscriberController, :show, as: :describe_subscriber
         #resources "/subs_groups", SubsGroupController
       end
     end
