@@ -7,7 +7,8 @@ defmodule ApiDemo.Api.V1.SubscriberController do
 
   def index(conn, _params) do
     subscribers = Repo.all(Subscriber)
-    render conn, subscribers: subscribers
+    #render conn, subscribers: subscribers
+    json conn, [subscribers]
   end
 
   # def edit(conn, _params) do
@@ -18,7 +19,8 @@ defmodule ApiDemo.Api.V1.SubscriberController do
 
   def show(conn, params) do
     subscriber = Repo.get_by(Subscriber, phone_number: params["phone_number"])
-    render conn, subscribers: subscriber
+    #render conn, subscribers: subscriber
+    json conn, [subscriber]
   end
 
   # def create(conn, _params) do
