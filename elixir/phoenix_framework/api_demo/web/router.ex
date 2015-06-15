@@ -3,9 +3,9 @@ defmodule ApiDemo.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :protect_from_forgery
+    # plug :fetch_session
+    # plug :fetch_flash
+    # plug :protect_from_forgery
   end
 
   scope "/", ApiDemo do
