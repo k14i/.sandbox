@@ -4,6 +4,8 @@ defmodule ApiDemo.Repo.Migrations.CreateSubscribers do
   def change do
     create table(:subscribers) do
       add :phone_number
+      # add :sim_id
+      # add :status
 
       timestamps
     end
