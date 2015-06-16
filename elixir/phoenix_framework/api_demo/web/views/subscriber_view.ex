@@ -5,8 +5,18 @@ defmodule ApiDemo.Api.V1.SubscriberView do
   #   subscribers
   # end
 
-  # def render("show.json", %{subscribers: subscribers}) do
-  #   subscribers
-  # end
+  def render("show.json", %{subscriber: subscriber}) do
+    format(subscriber)
+  end
+
+  defp format(subscriber) do
+    [
+      %{
+        phone_number: subscriber.phone_number,
+        created_at: subscriber.inserted_at,
+        updated_at: subscriber.updated_at,
+      }
+    ]
+  end
 
 end
