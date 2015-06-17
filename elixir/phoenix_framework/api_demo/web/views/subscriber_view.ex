@@ -6,10 +6,10 @@ defmodule ApiDemo.Api.V1.SubscriberView do
   # end
 
   def render("show.json", %{subscriber: subscriber}) do
-    format(subscriber)
+    format(%{subscriber: subscriber})
   end
 
-  defp format(subscriber) do
+  defp format(%{subscriber: subscriber}) do
     [
       %{
         phone_number: subscriber.phone_number,
