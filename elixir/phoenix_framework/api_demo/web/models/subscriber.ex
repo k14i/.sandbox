@@ -1,5 +1,7 @@
 defmodule ApiDemo.Subscriber do
   use Ecto.Model
+  alias ApiDemo.Repo
+  alias ApiDemo.Subscriber
 
   # validate subscriber,
   #   phone_number: present()
@@ -11,6 +13,10 @@ defmodule ApiDemo.Subscriber do
     #  field :sim_id, :string
     #  field :status, :string
     timestamps
+  end
+
+  def get(%{phone_number: phone_number}) do
+    Repo.get_by(Subscriber, phone_number: phone_number)
   end
 
 end

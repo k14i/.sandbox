@@ -1,6 +1,6 @@
 defmodule ApiDemo.Api.V1.SubscriberController do
   use ApiDemo.Web, :controller
-  alias ApiDemo.Repo
+  # alias ApiDemo.Repo
   alias ApiDemo.Subscriber
 
   plug :action
@@ -18,7 +18,8 @@ defmodule ApiDemo.Api.V1.SubscriberController do
   # end
 
   def show(conn, params) do
-    subscriber = Repo.get_by(Subscriber, phone_number: params["phone_number"])
+    #subscriber = Repo.get_by(Subscriber, phone_number: params["phone_number"])
+    subscriber = Subscriber.get(%{phone_number: params["phone_number"]})
     render conn, subscriber: subscriber
     #json conn, [subscriber]
   end
