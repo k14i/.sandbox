@@ -15,6 +15,10 @@ defmodule ApiDemo.Subscriber do
     timestamps
   end
 
+  def list() do
+    Repo.all(Subscriber)
+  end
+
   def get(%{phone_number: phone_number}) do
     Repo.get_by(Subscriber, phone_number: phone_number)
   end

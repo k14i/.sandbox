@@ -6,9 +6,10 @@ defmodule ApiDemo.Api.V1.SubscriberController do
   plug :action
 
   def index(conn, _params) do
-    subscribers = Repo.all(Subscriber)
-    #render conn, subscribers: subscribers
-    json conn, subscribers
+    #subscribers = Repo.all(Subscriber)
+    subscribers = Subscriber.list
+    render conn, subscribers: subscribers
+    #json conn, subscribers
   end
 
   # def edit(conn, _params) do
