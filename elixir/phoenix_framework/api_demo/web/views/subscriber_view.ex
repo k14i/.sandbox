@@ -15,7 +15,7 @@ defmodule ApiDemo.Api.V1.SubscriberView do
       created_at: h.inserted_at,
       updated_at: h.updated_at,
     }
-    format(t, acc ++ [subscriber])
+    format t, acc ++ [subscriber]
   end
 
   defp format([], acc) do
