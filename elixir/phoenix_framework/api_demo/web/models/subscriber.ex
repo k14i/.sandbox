@@ -16,11 +16,11 @@ defmodule ApiDemo.Subscriber do
   end
 
   def list() do
-    Repo.all(Subscriber)
+    Repo.all Subscriber
   end
 
   def get(%{phone_number: phone_number}) do
-    Repo.get_by(Subscriber, phone_number: phone_number)
+    Repo.get_by Subscriber, phone_number: phone_number
   end
 
 end
