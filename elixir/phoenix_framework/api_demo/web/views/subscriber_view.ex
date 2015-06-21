@@ -2,32 +2,24 @@ defmodule ApiDemo.Api.V1.SubscriberView do
   use ApiDemo.Web, :view
 
   def render("index.json", %{subscribers: subscribers}) do
-    format(%{subscribers: subscribers})
+    format(subscribers, [])
   end
 
   def render("show.json", %{subscriber: subscriber}) do
-    format(%{subscriber: subscriber})
+    format([subscriber], [])
   end
 
-  defp format_subscribers([h|t], acc) do
+  defp format([h|t], acc) do
     subscriber = %{
       phone_number: h.phone_number,
       created_at: h.inserted_at,
       updated_at: h.updated_at,
     }
-    format_subscribers(t, acc ++ [subscriber])
+    format(t, acc ++ [subscriber])
   end
 
-  defp format_subscribers([], acc) do
+  defp format([], acc) do
     acc
-  end
-
-  defp format(%{subscribers: subscribers}) do
-    format_subscribers(subscribers, [])
-  end
-
-  defp format(%{subscriber: subscriber}) do
-    format_subscribers([subscriber], [])
   end
 
 end
