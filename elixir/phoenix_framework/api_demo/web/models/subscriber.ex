@@ -1,5 +1,6 @@
 defmodule ApiDemo.Subscriber do
   use Ecto.Model
+  import Ecto.Query
   alias ApiDemo.Repo
   alias ApiDemo.Subscriber
 
@@ -15,11 +16,11 @@ defmodule ApiDemo.Subscriber do
     timestamps
   end
 
-  def list() do
+  def list do
     Repo.all Subscriber
   end
 
-  def get(%{phone_number: phone_number}) do
+  def get %{phone_number: phone_number} do
     Repo.get_by Subscriber, phone_number: phone_number
   end
 
