@@ -4,7 +4,7 @@ defmodule ApiDemo.Api.V1.SubscriberController do
 
   plug :action
 
-  def index(conn, _) do
+  def index conn, _ do
     subscribers = Subscriber.list
     render conn, subscribers: subscribers
     #json conn, subscribers
@@ -16,7 +16,7 @@ defmodule ApiDemo.Api.V1.SubscriberController do
   # def new(conn, _params) do
   # end
 
-  def show(conn, params) do
+  def show conn, params do
     subscriber = Subscriber.get %{phone_number: params["phone_number"]}
     render conn, subscriber: subscriber
     #json conn, [subscriber]
