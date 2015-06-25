@@ -4,6 +4,8 @@ defmodule ApiDemo.Subscriber do
   alias ApiDemo.Repo
   alias ApiDemo.Subscriber
 
+  # validate_type!(:string, subscriber.phone_number)
+  # Ecto.validate_unique Subscriber, phone_number: phone_number
   # validate subscriber,
   #   phone_number: present()
   #   sim_id: present()
@@ -27,7 +29,7 @@ defmodule ApiDemo.Subscriber do
     #   where: s.phone_number == ^phone_number,
     #   select: s
     # Repo.all query
-    Repo.get_by Subscriber, phone_number: phone_number
+    Repo.get_by! Subscriber, phone_number: phone_number
   end
 
 end
