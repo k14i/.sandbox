@@ -20,7 +20,7 @@ defmodule ApiDemo.Subscriber do
     timestamps
   end
 
-  def list limit \\ 1024 do
+  def list limit \\ :list_max do
     query = from s in Subscriber,
       limit: ^limit,
       select: s
