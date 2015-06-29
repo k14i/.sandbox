@@ -37,4 +37,6 @@ config :api_demo, ApiDemo.Repo,
   size: 10 # The amount of database connections in the pool
 
 config :api_demo, ApiDemo.Subscriber,
-  list_max: 2
+  list: [
+    limit: 2,
+  ]

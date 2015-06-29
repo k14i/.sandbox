@@ -20,7 +20,11 @@ defmodule ApiDemo.Subscriber do
     timestamps
   end
 
-  def list limit \\ Application.get_env(:api_demo, ApiDemo.Subscriber)[:list_max] do
+  defp limit(scope) do
+    Application.get_env(:api_demo, ApiDemo.Subscriber)[scope][:limit]
+  end
+
+  def list limit \\ limit(:list) do
     query = from s in Subscriber,
       limit: ^limit,
       select: s
