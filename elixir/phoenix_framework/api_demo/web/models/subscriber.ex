@@ -13,8 +13,8 @@ defmodule ApiDemo.Subscriber do
 
   schema "subscribers" do
     field :phone_number, :string
-    # field :sim_id, :string
-    # field :status, :string, default: "active"
+    field :sim_id, :string
+    field :status, :string, default: "active"
     # field :contracted_at, :datetime, default: nil
     # field :terminated_at, :datetime, default: nil
     timestamps

@@ -12,6 +12,8 @@ defmodule ApiDemo.Api.V1.SubscriberView do
   defp format [h|t], acc do
     subscriber = %{
       phone_number: h.phone_number,
+      sim_id: h.sim_id,
+      status: h.status,
       created_at: h.inserted_at,
       updated_at: h.updated_at,
     }
