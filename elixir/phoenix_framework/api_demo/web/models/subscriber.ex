@@ -26,6 +26,7 @@ defmodule ApiDemo.Subscriber do
 
   def list limit \\ limit(:list) do
     query = from s in Subscriber,
+      where: s.status == "active",
       limit: ^limit,
       select: s
     Repo.all query
