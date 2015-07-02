@@ -34,11 +34,11 @@ defmodule ApiDemo.Subscriber do
   end
 
   def get %{phone_number: phone_number} do
-    # query = from s in Subscriber,
-    #   where: s.phone_number == ^phone_number,
-    #   select: s
-    # Repo.all query
-    Repo.get_by! Subscriber, phone_number: phone_number
+    query = from s in Subscriber,
+      where: s.phone_number == ^phone_number,
+      select: s
+    Repo.all query
+    # Repo.get_by! Subscriber, phone_number: phone_number
   end
 
 end

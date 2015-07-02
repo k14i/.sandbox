@@ -6,7 +6,8 @@ defmodule ApiDemo.Api.V1.SubscriberView do
   end
 
   def render "show.json", %{subscriber: subscriber} do
-    format [subscriber], []
+    # format [subscriber], []  # Use when `Repo.get_by! Subscriber, phone_number: phone_number`
+    format subscriber, []
   end
 
   defp format [h|t], acc do
