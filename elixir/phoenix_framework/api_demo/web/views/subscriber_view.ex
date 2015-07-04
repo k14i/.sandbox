@@ -1,13 +1,16 @@
 defmodule ApiDemo.Api.V1.SubscriberView do
   use ApiDemo.Web, :view
 
-  def render "index.json", %{subscribers: subscribers} do
+  def render("index.json", %{subscribers: subscribers}) when is_list(subscribers) do
     format subscribers, []
   end
 
-  def render "show.json", %{subscriber: subscriber} do
-    # format [subscriber], []  # Use when `Repo.get_by! Subscriber, phone_number: phone_number`
+  def render("show.json", %{subscriber: subscriber}) when is_list(subscriber) do
     format subscriber, []
+  end
+
+  def render("show.json", %{subscriber: subscriber}) when is_list(subscriber) == false do
+    format [subscriber], []  # Use when `Repo.get_by! Subscriber, phone_number: phone_number`
   end
 
   defp format [h|t], acc do
