@@ -13,6 +13,20 @@ defmodule ApiDemo.Api.V1.SubscriberView do
     format [subscriber], []  # Use when `Repo.get_by! Subscriber, phone_number: phone_number`
   end
 
+  defp put_phone_number_list [h|t], target, acc do
+    acc = acc ++ [h.phone_number]
+    put_phone_number_list t, target, acc
+  end
+
+  defp put_phone_number_list [], target, acc do
+    elem = Map.put List.first(target), "index", acc
+    target = List.replace_at target, 0, elem
+  end
+
+  defp add_index target, subscribers do
+    put_phone_number_list subscribers, target, []
+  end
+
   defp format [h|t], acc do
     subscriber = %{
       phone_number: h.phone_number,
@@ -21,7 +35,9 @@ defmodule ApiDemo.Api.V1.SubscriberView do
       created_at: h.inserted_at,
       updated_at: h.updated_at,
     }
-    format t, acc ++ [subscriber]
+    res = format t, acc ++ [subscriber]
+
+    add_index res, [h] ++ t
   end
 
   defp format [], acc do
