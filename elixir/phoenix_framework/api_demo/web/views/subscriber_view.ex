@@ -32,6 +32,8 @@ defmodule ApiDemo.Api.V1.SubscriberView do
       phone_number: h.phone_number,
       sim_id: h.sim_id,
       status: h.status,
+      contracted_at: h.contracted_at,
+      terminated_at: h.terminated_at,
       created_at: h.inserted_at,
       updated_at: h.updated_at,
     }
