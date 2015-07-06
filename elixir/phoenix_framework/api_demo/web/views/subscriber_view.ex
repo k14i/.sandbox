@@ -32,11 +32,15 @@ defmodule ApiDemo.Api.V1.SubscriberView do
       phone_number: h.phone_number,
       sim_id: h.sim_id,
       status: h.status,
-      contracted_at: h.contracted_at,
-      terminated_at: h.terminated_at,
       created_at: h.inserted_at,
       updated_at: h.updated_at,
     }
+    if Map.has_key? h, "contracted_at" do
+      Map.put h.contracted_at, "contracted_at", subscriber
+    end
+    if Map.has_key? h, "terminated_at" do
+      Map.put h.terminated_at, "terminated_at", subscriber
+    end
     res = format t, acc ++ [subscriber]
 
     add_index res, [h] ++ t
