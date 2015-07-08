@@ -46,8 +46,6 @@ defmodule ApiDemo.Api.V1.SubscriberView do
     add_index res, [h] ++ t
   end
 
-  defp format [], acc do
-    acc
-  end
+  defp format([], acc), do: acc
 
 end
