@@ -1,0 +1,4 @@
+%{"finalizer": {:git, "https://github.com/keithseahus/elixir-finalizer.git", "821a601d2116356ff97745f53efcffc866fd9622", []},
+  "managed_process": {:git, "https://github.com/keithseahus/elixir-managed_process.git", "d78397c728a91713181f528d23b0621dacf55f86", []},
+  "oop": {:git, "https://github.com/keithseahus/elixir-oop.git", "43f41df515aac850cd618e52606c3559e6be808f", []},
+  "resource": {:git, "https://github.com/tonyrog/resource.git", "b9e1adcadcc8cb59130e0bbecbbe6777bb8d7c78", []}}
