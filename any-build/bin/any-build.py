@@ -85,12 +85,12 @@ if __name__ == '__main__':
 
 if len(sys.argv) is 2:
     usage()
-    exit(1)
+    sys.exit(1)
 
 DEFINITION_PATH = sys.argv[0]
 if len(DEFINITION_PATH) is 0:
     usage()
-    exit(1)
+    sys.exit(1)
 elif os.path.exists(DEFINITION_PATH) is False:
     for definition_dir in ANY_BUILD_DEFINITIONS:
         if os.path.exists(definition_dir + '/' + DEFINITION_PATH):
@@ -99,5 +99,5 @@ elif os.path.exists(DEFINITION_PATH) is False:
 
     if os.path.exists(DEFINITION_PATH) is False:
         print("any-build: definition not found: %(DEFINITION_PATH)s" % locals())
-        exit(2)
+        sys.exit(2)
 
